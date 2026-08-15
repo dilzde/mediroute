@@ -1,0 +1,226 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Hospital {
+  id              String   @id @default(uuid())
+  shortName       String
+  fullLegalName   String
+  tagline         String?
+  missionStatement String?
+  brandColorPrimary String?
+  brandColorSecondary String?
+  logoUrlLight    String?
+  logoUrlDark     String?
+  faviconUrl      String?
+  
+  mainLine        String?
+  emergencyLine   String?
+  whatsappNumber  String?
+  email           String?
+  
+  socialLinks     Json?     // e.g., { "facebook": "...", "twitter": "..." }
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  branches        Branch[]
+}
+
+model Branch {
+  id              String   @id @default(uuid())
+  hospitalId      String
+  hospital        Hospital @relation(fields: [hospitalId], references: [id])
+  
+  name            String
+  address         String
+  latitude        Float?
+  longitude       Float?
+  
+  is24Hours       Boolean  @default(false)
+  
+  doctors         DoctorBranch[]
+  appointments    Appointment[]
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model User {
+  id              String   @id @default(uuid())
+  email           String?  @unique
+  phone           String?  @unique
+  passwordHash    String?  // If not using OTP or for admin login
+  name            String
+  
+  role            Role     @default(PATIENT)
+  
+  doctorProfile   Doctor?
+  patientProfile  Patient?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  FRONT_DESK
+  DOCTOR
+  PATIENT
+}
+
+model Patient {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  dateOfBirth     DateTime?
+  insuranceProvider String?
+  
+  appointments    Appointment[]
+}
+
+model Doctor {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  headshotUrl     String?
+  specialty       String
+  qualifications  String
+  kmpdcRegNumber  String?
+  languagesSpoken String[]
+  bio             String?  @db.Text
+  yearsOfExperience Int?
+  
+  consultationFee Decimal?
+  supportsInPerson Boolean @default(true)
+  supportsVideo   Boolean  @default(false)
+  supportsPhone   Boolean  @default(false)
+  
+  branches        DoctorBranch[]
+  services        ServiceDoctor[]
+  appointments    Appointment[]
+}
+
+model DoctorBranch {
+  doctorId        String
+  doctor          Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  branchId        String
+  branch          Branch   @relation(fields: [branchId], references: [id], onDelete: Cascade)
+
+  @@id([doctorId, branchId])
+}
+
+model Service {
+  id              String   @id @default(uuid())
+  name            String
+  shortDescription String
+  longDescription String?  @db.Text
+  category        ServiceCategory
+  iconUrl         String?
+  coverImageUrl   String?
+  
+  whatToExpect    String[]
+  faqs            Json?    // [{ question, answer }]
+  
+  isBookable      Boolean  @default(true)
+  priceRange      String?
+  
+  conditions      ConditionService[]
+  doctors         ServiceDoctor[]
+}
+
+enum ServiceCategory {
+  SURGICAL
+  DIAGNOSTIC
+  OUTPATIENT
+  MATERNITY
+  DENTAL
+  WELLNESS
+  TELEHEALTH
+  EMERGENCY
+  OTHER
+}
+
+model ServiceDoctor {
+  serviceId       String
+  service         Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  doctorId        String
+  doctor          Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  @@id([serviceId, doctorId])
+}
+
+model Condition {
+  id              String   @id @default(uuid())
+  name            String
+  shortDescription String
+  
+  services        ConditionService[]
+}
+
+model ConditionService {
+  conditionId     String
+  condition       Condition @relation(fields: [conditionId], references: [id], onDelete: Cascade)
+  serviceId       String
+  service         Service   @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  
+  @@id([conditionId, serviceId])
+}
+
+model Appointment {
+  id              String   @id @default(uuid())
+  patientId       String
+  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  
+  doctorId        String?
+  doctor          Doctor?  @relation(fields: [doctorId], references: [id])
+  
+  branchId        String?
+  branch          Branch?  @relation(fields: [branchId], references: [id])
+  
+  scheduledAt     DateTime
+  durationMinutes Int      @default(30)
+  
+  type            AppointmentType
+  status          AppointmentStatus @default(REQUESTED)
+  
+  reasonForVisit  String?
+  notes           String?  @db.Text
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+enum AppointmentType {
+  IN_PERSON
+  VIDEO
+  PHONE
+}
+
+enum AppointmentStatus {
+  REQUESTED
+  CONFIRMED
+  CHECKED_IN
+  COMPLETED
+  NO_SHOW
+  CANCELLED
+}
+
+model Media {
+  id              String   @id @default(uuid())
+  url             String
+  filename        String
+  mimeType        String
+  sizeBytes       Int
+  tags            String[] // To categorize, e.g., 'illustration', 'doctor-headshot'
+  
+  createdAt       DateTime @default(now())
+}
