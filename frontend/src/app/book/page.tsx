@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { CheckCircle2, Calendar, Clock, User, ArrowRight, Activity, CalendarDays } from "lucide-react";
+import { CheckCircle2, CalendarDays, Clock, User, ArrowRight, Activity, Upload, Building2 } from "lucide-react";
 import Link from "next/link";
 
 const SERVICES = [
@@ -17,6 +17,16 @@ const TIME_SLOTS = [
   "01:00 PM", "02:30 PM", "04:00 PM"
 ];
 
+const INSURANCE_PROVIDERS = [
+  "NHIF (National Hospital Insurance Fund)",
+  "Jubilee Insurance",
+  "UAP Old Mutual",
+  "AAR Insurance",
+  "Britam",
+  "Madison Insurance",
+  "Self-Pay / Out of Pocket"
+];
+
 // Helper to generate the next 14 days
 const generateDates = () => {
   const dates = [];
@@ -24,10 +34,7 @@ const generateDates = () => {
   for (let i = 0; i < 14; i++) {
     const d = new Date(today);
     d.setDate(today.getDate() + i);
-    // Skip Sundays
-    if (d.getDay() !== 0) {
-      dates.push(d);
-    }
+    if (d.getDay() !== 0) dates.push(d);
   }
   return dates;
 };
@@ -40,6 +47,8 @@ export default function BookingPage() {
   const [selectedService, setSelectedService] = useState("");
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState("");
+  const [insurance, setInsurance] = useState("");
+  const [insuranceFile, setInsuranceFile] = useState<File | null>(null);
   
   const [patientDetails, setPatientDetails] = useState({
     firstName: "",
@@ -49,34 +58,22 @@ export default function BookingPage() {
     notes: ""
   });
 
-  // Mock booked slots in state
   const [bookedSlots, setBookedSlots] = useState<Record<string, string[]>>({});
-  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     setDates(generateDates());
-    // Simulate some previously booked slots for realism
     const today = new Date();
-    const mockBooked = {
+    setBookedSlots({
       [today.toDateString()]: ["09:00 AM", "01:00 PM"]
-    };
-    setBookedSlots(mockBooked);
+    });
   }, []);
-
-  const handleNextStep = () => {
-    if (step === 1 && selectedService) setStep(2);
-    if (step === 2 && selectedDate && selectedTime) setStep(3);
-  };
 
   const handleBookAppointment = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API call
     setTimeout(() => {
-      // Mark slot as booked locally
       if (selectedDate) {
         const dateStr = selectedDate.toDateString();
         setBookedSlots(prev => ({
@@ -94,64 +91,48 @@ export default function BookingPage() {
     return bookedSlots[dateStr]?.includes(time);
   };
 
+  // SUCCESS SCREEN
   if (isSuccess) {
     return (
-      <main className="flex-1 bg-slate-50 min-h-screen flex items-center justify-center py-20 px-4">
-        <div className="bg-white p-8 md:p-16 rounded-3xl shadow-xl max-w-2xl w-full text-center border border-slate-100">
-          <div className="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8">
+      <main className="flex-1 bg-[#F7EFE5] min-h-screen flex items-center justify-center py-20 px-4">
+        <div className="bg-white p-8 md:p-16 rounded-[2.5rem] shadow-2xl max-w-2xl w-full text-center border border-[#1A3636]/5">
+          <div className="w-24 h-24 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
             <CheckCircle2 size={48} />
           </div>
-          <h1 className="text-4xl font-black tracking-tighter uppercase mb-4 text-slate-800">Booking Confirmed</h1>
-          <p className="text-slate-600 mb-8 leading-relaxed">
-            Thank you, {patientDetails.firstName}! Your appointment for <strong className="text-slate-800">{SERVICES.find(s => s.id === selectedService)?.name}</strong> is scheduled for <strong className="text-slate-800">{selectedDate?.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })} at {selectedTime}</strong>. We will communicate with you shortly regarding your appointment.
+          <h1 className="text-4xl font-black tracking-tight mb-4 text-[#1A3636]">Booking Confirmed</h1>
+          <p className="text-[#1A3636]/70 mb-8 leading-relaxed text-lg">
+            Thank you, <strong className="text-[#1A3636]">{patientDetails.firstName}</strong>. Your appointment for <strong className="text-[#1A3636]">{SERVICES.find(s => s.id === selectedService)?.name}</strong> is scheduled for <strong className="text-[#1A3636]">{selectedDate?.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })} at {selectedTime}</strong>. We've sent a confirmation to your email.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => {
-                setIsSuccess(false);
-                setStep(1);
-                setSelectedService("");
-                setSelectedDate(null);
-                setSelectedTime("");
-                setPatientDetails({firstName: "", lastName: "", email: "", phone: "", notes: ""});
-              }}
-              className="bg-slate-100 text-slate-700 px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-slate-200 transition-colors"
-            >
-              Book Another
-            </button>
-            <Link href="/" className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/20">
-              Return Home
-            </Link>
-          </div>
+          <Link href="/" className="inline-block bg-[#1A3636] text-[#F7EFE5] px-10 py-4 rounded-full font-bold uppercase tracking-wide text-xs hover:bg-teal-900 transition-all shadow-lg shadow-[#1A3636]/20 hover:-translate-y-1">
+            Return to Homepage
+          </Link>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="flex-1 bg-slate-50 min-h-screen pb-24">
+    <main className="flex-1 bg-[#F7EFE5] min-h-screen pb-24">
       
       {/* Header */}
-      <div className="bg-white border-b border-slate-200 pt-16 pb-12 px-4 shadow-sm">
+      <div className="bg-white border-b border-[#1A3636]/10 pt-16 pb-12 px-4">
         <div className="container mx-auto max-w-5xl">
-          <h1 className="text-4xl md:text-5xl font-black tracking-tighter uppercase mb-4 text-slate-800">Book Appointment</h1>
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-6 text-[#1A3636]">Schedule Care</h1>
           <div className="flex items-center gap-2 md:gap-4 overflow-x-auto pb-4 md:pb-0 scrollbar-hide">
-            <div className={`flex items-center gap-2 ${step >= 1 ? 'text-blue-600' : 'text-slate-400'}`}>
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs ${step >= 1 ? 'bg-blue-100' : 'bg-slate-100'}`}>1</div>
-              <span className="text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">Service</span>
-            </div>
-            <div className={`h-px w-8 md:w-16 ${step >= 2 ? 'bg-blue-600' : 'bg-slate-200'}`}></div>
-            
-            <div className={`flex items-center gap-2 ${step >= 2 ? 'text-blue-600' : 'text-slate-400'}`}>
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs ${step >= 2 ? 'bg-blue-100' : 'bg-slate-100'}`}>2</div>
-              <span className="text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">Date & Time</span>
-            </div>
-            <div className={`h-px w-8 md:w-16 ${step >= 3 ? 'bg-blue-600' : 'bg-slate-200'}`}></div>
-            
-            <div className={`flex items-center gap-2 ${step >= 3 ? 'text-blue-600' : 'text-slate-400'}`}>
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs ${step >= 3 ? 'bg-blue-100' : 'bg-slate-100'}`}>3</div>
-              <span className="text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">Details</span>
-            </div>
+            {[
+              { num: 1, label: "Service" },
+              { num: 2, label: "Date & Time" },
+              { num: 3, label: "Insurance" },
+              { num: 4, label: "Details" }
+            ].map((s, i) => (
+              <div key={s.num} className="flex items-center gap-2 shrink-0">
+                <div className={`flex items-center gap-2 ${step >= s.num ? 'text-[#1A3636]' : 'text-[#1A3636]/30'}`}>
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-colors ${step >= s.num ? 'bg-[#1A3636] text-white' : 'bg-slate-100'}`}>{s.num}</div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest">{s.label}</span>
+                </div>
+                {i < 3 && <div className={`h-px w-6 md:w-12 ml-2 transition-colors ${step > s.num ? 'bg-[#1A3636]' : 'bg-slate-200'}`}></div>}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -160,27 +141,27 @@ export default function BookingPage() {
         <div className="flex flex-col lg:flex-row gap-8">
           
           {/* Main Form Area */}
-          <div className="flex-1 bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-slate-200">
+          <div className="flex-1 bg-white p-6 md:p-12 rounded-[2.5rem] shadow-xl shadow-[#1A3636]/5 border border-[#1A3636]/5">
             
-            {/* STEP 1: SERVICE SELECTION */}
+            {/* STEP 1: SERVICE */}
             {step === 1 && (
-              <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                <h2 className="text-2xl font-black tracking-tighter uppercase mb-6 text-slate-800 flex items-center gap-3">
-                  <Activity className="text-blue-600" /> Select a Service
+              <div className="animate-in fade-in duration-500">
+                <h2 className="text-2xl font-black tracking-tight mb-8 text-[#1A3636] flex items-center gap-3">
+                  <Activity className="text-teal-600" /> What do you need help with?
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {SERVICES.map((service) => (
                     <button
                       key={service.id}
                       onClick={() => { setSelectedService(service.id); setStep(2); }}
-                      className={`p-6 rounded-2xl border-2 text-left transition-all ${
+                      className={`p-6 rounded-3xl border-2 text-left transition-all duration-300 ${
                         selectedService === service.id 
-                          ? 'border-blue-600 bg-blue-50 shadow-md shadow-blue-600/10' 
-                          : 'border-slate-100 bg-white hover:border-slate-300 hover:bg-slate-50'
+                          ? 'border-[#1A3636] bg-[#1A3636] text-white shadow-lg' 
+                          : 'border-slate-100 bg-white hover:border-[#1A3636]/20 hover:bg-[#F7EFE5]/30'
                       }`}
                     >
-                      <p className="text-[10px] text-blue-600 font-bold uppercase tracking-widest mb-2">{service.category}</p>
-                      <h3 className="text-lg font-bold text-slate-800">{service.name}</h3>
+                      <p className={`text-[10px] font-bold uppercase tracking-widest mb-2 ${selectedService === service.id ? 'text-white/70' : 'text-teal-700'}`}>{service.category}</p>
+                      <h3 className={`text-lg font-bold ${selectedService === service.id ? 'text-white' : 'text-[#1A3636]'}`}>{service.name}</h3>
                     </button>
                   ))}
                 </div>
@@ -189,15 +170,15 @@ export default function BookingPage() {
 
             {/* STEP 2: DATE & TIME */}
             {step === 2 && (
-              <div className="animate-in fade-in slide-in-from-right-8 duration-500">
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-black tracking-tighter uppercase text-slate-800 flex items-center gap-3">
-                    <CalendarDays className="text-blue-600" /> Select Date
+              <div className="animate-in fade-in duration-500">
+                <div className="flex items-center justify-between mb-8">
+                  <h2 className="text-2xl font-black tracking-tight text-[#1A3636] flex items-center gap-3">
+                    <CalendarDays className="text-teal-600" /> When works for you?
                   </h2>
-                  <button onClick={() => setStep(1)} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-slate-700">← Back</button>
+                  <button onClick={() => setStep(1)} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#1A3636]">← Back</button>
                 </div>
                 
-                {/* Horizontal Date Scroller */}
+                {/* Horizontal Date Pills */}
                 <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide -mx-2 px-2">
                   {dates.map((date, idx) => {
                     const isSelected = selectedDate?.toDateString() === date.toDateString();
@@ -205,16 +186,16 @@ export default function BookingPage() {
                       <button
                         key={idx}
                         onClick={() => { setSelectedDate(date); setSelectedTime(""); }}
-                        className={`flex flex-col items-center justify-center min-w-[80px] h-24 rounded-2xl border-2 transition-all flex-shrink-0 ${
+                        className={`flex flex-col items-center justify-center min-w-[90px] h-28 rounded-full border-2 transition-all flex-shrink-0 ${
                           isSelected
-                            ? 'border-blue-600 bg-blue-600 text-white shadow-lg shadow-blue-600/20'
-                            : 'border-slate-100 bg-white hover:border-slate-300 text-slate-600 hover:bg-slate-50'
+                            ? 'border-teal-500 bg-teal-500 text-white shadow-xl shadow-teal-500/20'
+                            : 'border-slate-100 bg-white hover:border-teal-200 text-[#1A3636] hover:bg-teal-50'
                         }`}
                       >
                         <span className="text-[10px] font-bold uppercase tracking-widest opacity-80 mb-1">
                           {date.toLocaleDateString('en-US', { weekday: 'short' })}
                         </span>
-                        <span className="text-2xl font-black">{date.getDate()}</span>
+                        <span className="text-3xl font-black tracking-tighter">{date.getDate()}</span>
                         <span className="text-[10px] font-bold uppercase tracking-widest opacity-80 mt-1">
                           {date.toLocaleDateString('en-US', { month: 'short' })}
                         </span>
@@ -223,12 +204,13 @@ export default function BookingPage() {
                   })}
                 </div>
 
+                {/* Time Pills */}
                 {selectedDate && (
-                  <div className="mt-8 animate-in fade-in duration-300">
-                    <h2 className="text-xl font-black tracking-tighter uppercase text-slate-800 mb-6 flex items-center gap-3">
-                      <Clock className="text-blue-600" size={20} /> Available Times
+                  <div className="mt-10 animate-in fade-in duration-300">
+                    <h2 className="text-lg font-black tracking-tight text-[#1A3636] mb-6 flex items-center gap-3">
+                      <Clock className="text-teal-600" size={18} /> Select a Time
                     </h2>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <div className="flex flex-wrap gap-3">
                       {TIME_SLOTS.map((time, idx) => {
                         const booked = isSlotBooked(selectedDate, time);
                         const isSelected = selectedTime === time;
@@ -237,16 +219,15 @@ export default function BookingPage() {
                             key={idx}
                             disabled={booked}
                             onClick={() => setSelectedTime(time)}
-                            className={`p-4 rounded-xl border text-sm font-bold transition-all ${
+                            className={`px-6 py-4 rounded-full text-sm font-bold transition-all ${
                               booked 
-                                ? 'bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed opacity-60' 
+                                ? 'bg-slate-50 border border-slate-100 text-slate-300 cursor-not-allowed' 
                                 : isSelected
-                                  ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-600/20'
-                                  : 'bg-white border-slate-200 text-slate-700 hover:border-blue-300 hover:bg-blue-50'
+                                  ? 'bg-teal-500 border border-teal-500 text-white shadow-lg shadow-teal-500/30 -translate-y-0.5'
+                                  : 'bg-white border border-slate-200 text-[#1A3636] hover:border-teal-500 hover:text-teal-700'
                             }`}
                           >
                             {time}
-                            {booked && <span className="block text-[8px] uppercase tracking-widest mt-1">Unavailable</span>}
                           </button>
                         )
                       })}
@@ -254,11 +235,11 @@ export default function BookingPage() {
                   </div>
                 )}
 
-                <div className="mt-10 pt-6 border-t border-slate-100 flex justify-end">
+                <div className="mt-12 pt-8 border-t border-slate-100 flex justify-end">
                   <button 
                     disabled={!selectedDate || !selectedTime}
                     onClick={() => setStep(3)}
-                    className="bg-blue-600 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    className="bg-[#1A3636] text-[#F7EFE5] px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-teal-900 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-3 shadow-lg shadow-[#1A3636]/20"
                   >
                     Continue <ArrowRight size={16} />
                   </button>
@@ -266,79 +247,123 @@ export default function BookingPage() {
               </div>
             )}
 
-            {/* STEP 3: PATIENT DETAILS */}
+            {/* STEP 3: INSURANCE & TRIAGE */}
             {step === 3 && (
-              <form onSubmit={handleBookAppointment} className="animate-in fade-in slide-in-from-right-8 duration-500">
-                <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-2xl font-black tracking-tighter uppercase text-slate-800 flex items-center gap-3">
-                    <User className="text-blue-600" /> Patient Details
+              <div className="animate-in fade-in duration-500">
+                 <div className="flex items-center justify-between mb-8">
+                  <h2 className="text-2xl font-black tracking-tight text-[#1A3636] flex items-center gap-3">
+                    <Building2 className="text-teal-600" /> Insurance Verification
                   </h2>
-                  <button type="button" onClick={() => setStep(2)} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-slate-700">← Back</button>
+                  <button onClick={() => setStep(2)} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#1A3636]">← Back</button>
+                </div>
+
+                <div className="space-y-8">
+                  <div>
+                    <label className="block text-sm font-bold text-[#1A3636] mb-3">Select your primary provider</label>
+                    <select 
+                      value={insurance}
+                      onChange={(e) => setInsurance(e.target.value)}
+                      className="w-full p-5 rounded-2xl border border-slate-200 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none transition-all bg-slate-50 focus:bg-white text-[#1A3636] font-medium"
+                    >
+                      <option value="" disabled>Choose provider...</option>
+                      {INSURANCE_PROVIDERS.map(p => <option key={p} value={p}>{p}</option>)}
+                    </select>
+                  </div>
+
+                  {insurance && insurance !== "Self-Pay / Out of Pocket" && (
+                    <div>
+                      <label className="block text-sm font-bold text-[#1A3636] mb-3">Upload Insurance Card (Optional but recommended)</label>
+                      <div className="border-2 border-dashed border-slate-200 rounded-3xl p-10 flex flex-col items-center justify-center text-center hover:bg-slate-50 hover:border-teal-500 transition-colors cursor-pointer group">
+                        <div className="w-16 h-16 bg-slate-100 group-hover:bg-teal-50 rounded-full flex items-center justify-center mb-4 transition-colors">
+                          <Upload className="text-slate-400 group-hover:text-teal-500" />
+                        </div>
+                        <p className="font-bold text-[#1A3636] mb-1">Drag and drop your card photo here</p>
+                        <p className="text-xs text-slate-400">or click to browse from your device</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="mt-12 pt-8 border-t border-slate-100 flex justify-end">
+                  <button 
+                    disabled={!insurance}
+                    onClick={() => setStep(4)}
+                    className="bg-[#1A3636] text-[#F7EFE5] px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-teal-900 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-3 shadow-lg shadow-[#1A3636]/20"
+                  >
+                    Continue <ArrowRight size={16} />
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* STEP 4: PATIENT DETAILS */}
+            {step === 4 && (
+              <form onSubmit={handleBookAppointment} className="animate-in fade-in duration-500">
+                <div className="flex items-center justify-between mb-8">
+                  <h2 className="text-2xl font-black tracking-tight text-[#1A3636] flex items-center gap-3">
+                    <User className="text-teal-600" /> About You
+                  </h2>
+                  <button type="button" onClick={() => setStep(3)} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#1A3636]">← Back</button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">First Name</label>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">First Name</label>
                     <input 
                       required
                       type="text" 
                       value={patientDetails.firstName}
                       onChange={e => setPatientDetails({...patientDetails, firstName: e.target.value})}
-                      className="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all bg-slate-50 focus:bg-white"
-                      placeholder="Jane"
+                      className="w-full p-4 rounded-2xl border border-slate-200 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none transition-all bg-slate-50 focus:bg-white text-[#1A3636] font-medium"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Last Name</label>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Last Name</label>
                     <input 
                       required
                       type="text" 
                       value={patientDetails.lastName}
                       onChange={e => setPatientDetails({...patientDetails, lastName: e.target.value})}
-                      className="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all bg-slate-50 focus:bg-white"
-                      placeholder="Doe"
+                      className="w-full p-4 rounded-2xl border border-slate-200 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none transition-all bg-slate-50 focus:bg-white text-[#1A3636] font-medium"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Email Address</label>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Email Address</label>
                     <input 
                       required
                       type="email" 
                       value={patientDetails.email}
                       onChange={e => setPatientDetails({...patientDetails, email: e.target.value})}
-                      className="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all bg-slate-50 focus:bg-white"
-                      placeholder="jane@example.com"
+                      className="w-full p-4 rounded-2xl border border-slate-200 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none transition-all bg-slate-50 focus:bg-white text-[#1A3636] font-medium"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Phone Number</label>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Phone Number</label>
                     <input 
                       required
                       type="tel" 
                       value={patientDetails.phone}
                       onChange={e => setPatientDetails({...patientDetails, phone: e.target.value})}
-                      className="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all bg-slate-50 focus:bg-white"
-                      placeholder="+254 700 000000"
+                      className="w-full p-4 rounded-2xl border border-slate-200 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none transition-all bg-slate-50 focus:bg-white text-[#1A3636] font-medium"
                     />
                   </div>
                 </div>
                 
                 <div className="mb-8">
-                  <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Additional Notes (Optional)</label>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Reason for visit (Optional)</label>
                   <textarea 
                     rows={3}
                     value={patientDetails.notes}
                     onChange={e => setPatientDetails({...patientDetails, notes: e.target.value})}
-                    className="w-full p-4 rounded-xl border border-slate-200 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all bg-slate-50 focus:bg-white"
-                    placeholder="Any specific symptoms or questions?"
+                    className="w-full p-4 rounded-2xl border border-slate-200 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none transition-all bg-slate-50 focus:bg-white text-[#1A3636] font-medium"
                   ></textarea>
                 </div>
 
-                <div className="pt-6 border-t border-slate-100 flex justify-end">
+                <div className="pt-8 border-t border-slate-100 flex justify-end">
                   <button 
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-blue-600 text-white px-10 py-5 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-blue-700 transition-all disabled:opacity-70 flex items-center gap-3 shadow-xl shadow-blue-600/30 hover:-translate-y-1 w-full md:w-auto justify-center"
+                    className="bg-teal-500 text-white px-12 py-5 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-teal-600 transition-all disabled:opacity-70 flex items-center gap-3 shadow-xl shadow-teal-500/30 hover:-translate-y-1 w-full md:w-auto justify-center"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center gap-2">
@@ -354,36 +379,37 @@ export default function BookingPage() {
           </div>
 
           {/* Sidebar Summary */}
-          <div className="w-full lg:w-80 flex-shrink-0">
-            <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 sticky top-6">
-              <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-6 border-b border-slate-100 pb-4">Booking Summary</h3>
+          <div className="w-full lg:w-[340px] flex-shrink-0">
+            <div className="bg-[#1A3636] text-[#F7EFE5] p-8 rounded-[2.5rem] shadow-xl sticky top-28">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-8 pb-4 border-b border-white/10">Visit Summary</h3>
               
-              <div className="space-y-6">
+              <div className="space-y-8">
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Service</p>
-                  <p className="text-sm font-bold text-slate-800">
-                    {selectedService ? SERVICES.find(s => s.id === selectedService)?.name : "Not selected"}
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-teal-400 mb-1">Service Type</p>
+                  <p className="text-lg font-bold text-white">
+                    {selectedService ? SERVICES.find(s => s.id === selectedService)?.name : "—"}
                   </p>
                 </div>
                 
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Date</p>
-                  <p className="text-sm font-bold text-slate-800">
-                    {selectedDate ? selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) : "Not selected"}
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-teal-400 mb-1">Date & Time</p>
+                  <p className="text-lg font-bold text-white">
+                    {selectedDate ? selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }) : "—"}
+                    {selectedTime && <span className="block text-sm text-white/70 mt-1">{selectedTime}</span>}
                   </p>
                 </div>
-                
+
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1">Time</p>
-                  <p className="text-sm font-bold text-slate-800">
-                    {selectedTime || "Not selected"}
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-teal-400 mb-1">Coverage</p>
+                  <p className="text-sm font-bold text-white/80">
+                    {insurance || "—"}
                   </p>
                 </div>
                 
-                <div className="pt-6 border-t border-slate-100">
-                  <div className="bg-blue-50 p-4 rounded-xl">
-                    <p className="text-[10px] text-blue-800 leading-relaxed font-medium">
-                      All appointments are subject to confirmation. Please arrive 15 minutes prior to your scheduled time.
+                <div className="pt-8 border-t border-white/10">
+                  <div className="bg-white/5 p-5 rounded-2xl border border-white/10">
+                    <p className="text-xs text-white/70 leading-relaxed font-medium">
+                      Payment or copays will be collected securely at the time of your visit.
                     </p>
                   </div>
                 </div>
