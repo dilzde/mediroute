@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Search, MapPin, Video, Stethoscope, ArrowRight, Play, AudioWaveform as Waveform } from "lucide-react";
+import { Search, MapPin, Video, Stethoscope, ArrowRight, Play, AudioWaveform as Waveform, Activity, CalendarDays, ShieldCheck } from "lucide-react";
 
 export default function Home() {
   return (
