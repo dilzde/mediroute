@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const mockDoctors = [
-  { id: "samuel-ochieng", name: "Dr. Samuel Ochieng", degrees: "MBChB, MMed (Cardiology)", specialty: "Cardiology", location: "Kenya Central Clinic, Main Branch" },
-  { id: "amina-patel", name: "Dr. Amina Patel", degrees: "MBBS, MS (ENT)", specialty: "ENT Surgery", location: "Kenya Central Clinic, Main Branch", languages: "En, Sw" },
-  { id: "david-miller", name: "Dr. David Miller", degrees: "MD, PhD (Neurology)", specialty: "Neurology", location: "Kenya Central Clinic, Main Branch" },
+  { id: "samuel-ochieng", name: "Dr. Samuel Ochieng", degrees: "MBChB, MMed (Surgery)", specialty: "Laparoscopy", location: "Kenya Central Clinic, Main Branch" },
+  { id: "amina-patel", name: "Dr. Amina Patel", degrees: "MBBS, MS (Gastroenterology)", specialty: "Endoscopy", location: "Kenya Central Clinic, Main Branch", languages: "En, Sw" },
+  { id: "david-miller", name: "Dr. David Miller", degrees: "MD (General Practice)", specialty: "Consultations", location: "Kenya Central Clinic, Main Branch" },
 ];
 
 export default function FindADoctorPage() {
@@ -52,16 +52,16 @@ export default function FindADoctorPage() {
               <h3 className="text-[9px] font-bold uppercase tracking-widest mb-3 text-slate-800">SPECIALTY</h3>
               <div className="space-y-3">
                 <label className="flex items-center gap-3 text-xs text-slate-600 cursor-pointer hover:text-teal-700 transition-colors">
-                  <input type="checkbox" className="w-4 h-4 border-slate-300 rounded text-teal-600 focus:ring-teal-500" /> Cardiology
+                  <input type="checkbox" className="w-4 h-4 border-slate-300 rounded text-teal-600 focus:ring-teal-500" /> Laparoscopy
                 </label>
                 <label className="flex items-center gap-3 text-xs text-slate-900 font-medium cursor-pointer">
-                  <input type="checkbox" defaultChecked className="w-4 h-4 border-slate-300 rounded text-teal-600 focus:ring-teal-500" /> ENT (Otolaryngology)
+                  <input type="checkbox" defaultChecked className="w-4 h-4 border-slate-300 rounded text-teal-600 focus:ring-teal-500" /> Endoscopy
                 </label>
                 <label className="flex items-center gap-3 text-xs text-slate-600 cursor-pointer hover:text-teal-700 transition-colors">
-                  <input type="checkbox" className="w-4 h-4 border-slate-300 rounded text-teal-600 focus:ring-teal-500" /> Neurology
+                  <input type="checkbox" className="w-4 h-4 border-slate-300 rounded text-teal-600 focus:ring-teal-500" /> Minor Theatre
                 </label>
                 <label className="flex items-center gap-3 text-xs text-slate-600 cursor-pointer hover:text-teal-700 transition-colors">
-                  <input type="checkbox" className="w-4 h-4 border-slate-300 rounded text-teal-600 focus:ring-teal-500" /> Orthopedics
+                  <input type="checkbox" className="w-4 h-4 border-slate-300 rounded text-teal-600 focus:ring-teal-500" /> Consultations
                 </label>
               </div>
             </div>

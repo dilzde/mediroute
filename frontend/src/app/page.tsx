@@ -89,45 +89,45 @@ export default function HomePage() {
       </section>
 
       {/* Clinical Excellence */}
-      <section className="py-24 px-4 md:px-8 container mx-auto bg-[#fcfcfc]">
-        <h2 className="text-4xl font-black tracking-tighter uppercase mb-12">OUR CLINICAL EXCELLENCE</h2>
+      <section className="py-24 px-4 md:px-8 container mx-auto bg-slate-50">
+        <h2 className="text-4xl font-black tracking-tighter uppercase mb-12 text-slate-800">OUR CLINICAL EXCELLENCE</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-4 border border-gray-300">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           
-          <Link href="/services" className="p-8 border-b md:border-b-0 md:border-r border-gray-300 bg-white group cursor-pointer hover:bg-gray-50 transition-colors flex flex-col items-start relative overflow-hidden">
-            <div className="w-full h-32 mb-6 bg-gray-200">
-              <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=400&auto=format&fit=crop" alt="Cardiology" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <Link href="/services" className="p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 group cursor-pointer transition-all hover:-translate-y-1 flex flex-col items-start relative overflow-hidden">
+            <div className="w-full h-40 mb-6 bg-slate-100 rounded-2xl overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=400&auto=format&fit=crop" alt="Laparoscopy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
-            <h3 className="text-sm font-bold uppercase tracking-widest mb-4">CARDIOLOGY</h3>
-            <p className="text-[11px] text-gray-600 leading-relaxed mb-8">Advanced diagnostic and interventional heart care using state-of-the-art technology.</p>
-            <span className="text-[10px] font-bold uppercase tracking-widest mt-auto group-hover:underline text-black">LEARN MORE →</span>
+            <h3 className="text-sm font-bold uppercase tracking-widest mb-4 text-slate-800">LAPAROSCOPY</h3>
+            <p className="text-[11px] text-slate-500 leading-relaxed mb-8">Minimally invasive surgical procedures using advanced camera technology for precise diagnosis.</p>
+            <span className="text-[10px] font-bold uppercase tracking-widest mt-auto text-teal-600 group-hover:text-teal-700 transition-colors">LEARN MORE →</span>
           </Link>
 
-          <Link href="/services" className="p-8 border-b md:border-b-0 md:border-r border-gray-300 bg-white group cursor-pointer hover:bg-gray-50 transition-colors flex flex-col items-start relative overflow-hidden">
-            <div className="w-full h-32 mb-6 bg-gray-200">
-              <img src="https://images.unsplash.com/photo-1579684453423-f84349ef60b0?q=80&w=400&auto=format&fit=crop" alt="Orthopedics" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <Link href="/services" className="p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 group cursor-pointer transition-all hover:-translate-y-1 flex flex-col items-start relative overflow-hidden">
+            <div className="w-full h-40 mb-6 bg-slate-100 rounded-2xl overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=400&auto=format&fit=crop" alt="Endoscopy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
-            <h3 className="text-sm font-bold uppercase tracking-widest mb-4">ORTHOPEDICS</h3>
-            <p className="text-[11px] text-gray-600 leading-relaxed mb-8">Comprehensive bone, joint, and spine surgery with accelerated rehabilitation protocols.</p>
-            <span className="text-[10px] font-bold uppercase tracking-widest mt-auto group-hover:underline text-black">LEARN MORE →</span>
+            <h3 className="text-sm font-bold uppercase tracking-widest mb-4 text-slate-800">ENDOSCOPY</h3>
+            <p className="text-[11px] text-slate-500 leading-relaxed mb-8">Advanced diagnostic imaging and therapeutic procedures of the digestive tract.</p>
+            <span className="text-[10px] font-bold uppercase tracking-widest mt-auto text-teal-600 group-hover:text-teal-700 transition-colors">LEARN MORE →</span>
           </Link>
 
-          <Link href="/services" className="p-8 border-b md:border-b-0 md:border-r border-gray-300 bg-white group cursor-pointer hover:bg-gray-50 transition-colors flex flex-col items-start relative overflow-hidden">
-            <div className="w-full h-32 mb-6 bg-gray-200">
-              <img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=400&auto=format&fit=crop" alt="Oncology" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <Link href="/services" className="p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 group cursor-pointer transition-all hover:-translate-y-1 flex flex-col items-start relative overflow-hidden">
+            <div className="w-full h-40 mb-6 bg-slate-100 rounded-2xl overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=400&auto=format&fit=crop" alt="Minor Theatre" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
-            <h3 className="text-sm font-bold uppercase tracking-widest mb-4">ONCOLOGY</h3>
-            <p className="text-[11px] text-gray-600 leading-relaxed mb-8">Multi-disciplinary cancer care, including chemotherapy, radiation, and surgical oncology.</p>
-            <span className="text-[10px] font-bold uppercase tracking-widest mt-auto group-hover:underline text-black">LEARN MORE →</span>
+            <h3 className="text-sm font-bold uppercase tracking-widest mb-4 text-slate-800">MINOR THEATRE</h3>
+            <p className="text-[11px] text-slate-500 leading-relaxed mb-8">Fully equipped for minor surgical procedures, emergency wound care, and day-case treatments.</p>
+            <span className="text-[10px] font-bold uppercase tracking-widest mt-auto text-teal-600 group-hover:text-teal-700 transition-colors">LEARN MORE →</span>
           </Link>
 
-          <Link href="/services" className="p-8 bg-white group cursor-pointer hover:bg-gray-50 transition-colors flex flex-col items-start relative overflow-hidden">
-            <div className="w-full h-32 mb-6 bg-gray-200">
-              <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=400&auto=format&fit=crop" alt="Maternity" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <Link href="/services" className="p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 group cursor-pointer transition-all hover:-translate-y-1 flex flex-col items-start relative overflow-hidden">
+            <div className="w-full h-40 mb-6 bg-slate-100 rounded-2xl overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=400&auto=format&fit=crop" alt="Consultations" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
-            <h3 className="text-sm font-bold uppercase tracking-widest mb-4">MATERNITY</h3>
-            <p className="text-[11px] text-gray-600 leading-relaxed mb-8">Premium maternity wings and specialized NICU for the safest delivery experience.</p>
-            <span className="text-[10px] font-bold uppercase tracking-widest mt-auto group-hover:underline text-black">LEARN MORE →</span>
+            <h3 className="text-sm font-bold uppercase tracking-widest mb-4 text-slate-800">CONSULTATIONS</h3>
+            <p className="text-[11px] text-slate-500 leading-relaxed mb-8">Expert medical consultations and personalized care plans tailored to your health needs.</p>
+            <span className="text-[10px] font-bold uppercase tracking-widest mt-auto text-teal-600 group-hover:text-teal-700 transition-colors">LEARN MORE →</span>
           </Link>
 
         </div>
@@ -200,7 +200,7 @@ export default function HomePage() {
               </div>
               <div className="p-8">
                 <h3 className="text-2xl font-black tracking-tighter uppercase mb-1 text-slate-800">DR. SARAH JENKINS</h3>
-                <p className="text-xs text-teal-600 font-bold uppercase tracking-widest mb-4">Pediatric Specialist</p>
+                <p className="text-xs text-teal-600 font-bold uppercase tracking-widest mb-4">Endoscopy Specialist</p>
                 <div className="w-full h-px bg-slate-200 mb-4"></div>
                 <Link href="/find-a-doctor" className="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-teal-600 transition-colors">View Profile →</Link>
               </div>

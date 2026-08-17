@@ -33,10 +33,10 @@ export default function RootLayout({
         </div>
 
         {/* Navigation Bar */}
-        <header className="sticky top-0 z-50 w-full bg-[#fdfdfd] border-b border-gray-200">
+        <header className="sticky top-0 z-50 w-full bg-white border-b border-slate-200 shadow-sm">
           <div className="container mx-auto flex h-24 items-center justify-between px-4 md:px-8">
-            <Link href="/" className="flex items-center leading-none mr-8">
-              <h1 className="text-3xl md:text-4xl font-black tracking-tighter uppercase leading-[0.9]">
+            <Link href="/" className="flex items-center leading-none md:mr-8 flex-shrink-0">
+              <h1 className="text-2xl md:text-4xl font-black tracking-tighter uppercase leading-[0.9] text-slate-900">
                 KENYA CENTRAL<br />CLINIC
               </h1>
             </Link>
@@ -49,9 +49,9 @@ export default function RootLayout({
               <Link href="/contact" className="hover:underline">Contact</Link>
             </nav>
             
-            <div className="flex items-center gap-6 ml-8">
-              <Link href="/book" className="bg-teal-600 text-white px-8 py-3 text-[11px] font-bold uppercase transition-all rounded-full shadow-lg shadow-teal-600/20 hover:bg-teal-700 hover:shadow-xl hover:-translate-y-0.5 leading-tight text-center">
-                Book<br />Appointment
+            <div className="flex items-center gap-4 md:gap-6 md:ml-8">
+              <Link href="/book" className="bg-teal-600 text-white px-4 md:px-8 py-2.5 md:py-3 text-[10px] md:text-[11px] font-bold uppercase transition-all rounded-full shadow-lg shadow-teal-600/20 hover:bg-teal-700 hover:shadow-xl hover:-translate-y-0.5 leading-tight text-center whitespace-nowrap">
+                Book<span className="hidden md:inline"><br /></span> Appointment
               </Link>
             </div>
           </div>

@@ -39,12 +39,12 @@ export default function BookingPage() {
 
         {/* Specialized Clinics */}
         {/* Specialized Clinics */}
-        <section className="bg-white border border-slate-200 rounded-3xl shadow-sm p-8 md:p-12 relative overflow-hidden">
+        <section className="bg-white border border-slate-200 rounded-3xl shadow-sm p-6 md:p-12 relative overflow-hidden">
           <div className="absolute top-[-50px] right-[-50px] w-64 h-64 bg-emerald-50 rounded-full blur-3xl opacity-60 -z-0"></div>
           <div className="relative z-10">
-            <h2 className="text-2xl font-black tracking-tighter uppercase mb-2 text-slate-800">Specialized Clinics</h2>
+            <h2 className="text-2xl font-black tracking-tighter uppercase mb-2 text-slate-800">Specialized Clinics & Theatre</h2>
             <p className="text-xs text-slate-500 mb-8 max-w-2xl">
-              Consultations with our specialists (Cardiology, Neurology, Oncology, etc.) operate strictly on an appointment basis. A doctor's referral may be required for certain specialists.
+              Consultations for specialized procedures (Laparoscopy, Endoscopy, Minor Theatre, etc.) operate strictly on an appointment basis. A prior consultation may be required.
             </p>
 
             <div className="border border-slate-100 rounded-2xl p-6 bg-slate-50 flex flex-col md:flex-row items-center justify-between gap-6 hover:border-teal-300 transition-colors shadow-sm hover:shadow-md">
@@ -59,35 +59,35 @@ export default function BookingPage() {
           </div>
         </section>
 
-        {/* Maternity Services */}
-        <section className="bg-white border border-slate-200 rounded-3xl shadow-sm p-8 md:p-12 relative overflow-hidden">
+        {/* General Consultations */}
+        <section className="bg-white border border-slate-200 rounded-3xl shadow-sm p-6 md:p-12 relative overflow-hidden">
           <div className="absolute top-[-50px] right-[-50px] w-64 h-64 bg-rose-50 rounded-full blur-3xl opacity-60 -z-0"></div>
           <div className="relative z-10">
-            <h2 className="text-2xl font-black tracking-tighter uppercase mb-2 text-slate-800">Maternity Bookings</h2>
+            <h2 className="text-2xl font-black tracking-tighter uppercase mb-2 text-slate-800">General Consultations</h2>
             <p className="text-xs text-slate-500 mb-8 max-w-2xl">
-              Maternity bookings require a specific process to ensure a seamless delivery experience. Please follow the steps below carefully.
+              Booking a general medical consultation is straightforward. Please follow the steps below to ensure a seamless experience.
             </p>
 
             <div className="space-y-6">
               <div className="flex gap-6 items-start">
                 <div className="w-8 h-8 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center font-black flex-shrink-0 mt-0.5 shadow-sm">1</div>
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-widest mb-1 text-slate-800">Obtain a Booking Form</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">You must obtain a physical maternity booking form directly from your attending obstetrician.</p>
+                  <h3 className="text-xs font-bold uppercase tracking-widest mb-1 text-slate-800">Select a Service</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">Determine whether you need a general consultation or a specific procedure assessment.</p>
                 </div>
               </div>
               <div className="flex gap-6 items-start">
                 <div className="w-8 h-8 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center font-black flex-shrink-0 mt-0.5 shadow-sm">2</div>
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-widest mb-1 text-slate-800">Present to Bookings Office</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">Present the completed form to the main hospital Admissions & Bookings desk.</p>
+                  <h3 className="text-xs font-bold uppercase tracking-widest mb-1 text-slate-800">Contact Bookings Office</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">Call our direct line to schedule an appointment with the respective specialist.</p>
                 </div>
               </div>
               <div className="flex gap-6 items-start">
                 <div className="w-8 h-8 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center font-black flex-shrink-0 mt-0.5 shadow-sm">3</div>
                 <div>
-                  <h3 className="text-xs font-bold uppercase tracking-widest mb-1 text-slate-800">Deposit & Timeline</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">A required deposit must be paid at the time of booking. Maternity bookings should ideally be made <strong className="font-bold text-teal-700">at least two months before</strong> your expected delivery date.</p>
+                  <h3 className="text-xs font-bold uppercase tracking-widest mb-1 text-slate-800">Attend Consultation</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">Please arrive <strong className="font-bold text-teal-700">at least 15 minutes before</strong> your scheduled time for triage and registration.</p>
                 </div>
               </div>
             </div>

@@ -4,64 +4,52 @@ import Link from "next/link";
 import { useState } from "react";
 
 const servicesData = {
-  "Cardiology": {
-    title: "Cardiology",
-    department: "DEPARTMENT",
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop",
-    description: "Advanced diagnostic and interventional heart care using state-of-the-art technology. Our cardiology department is dedicated to the prevention, diagnosis, and treatment of cardiovascular diseases.",
-    quote: "We provide comprehensive cardiac care, from routine checkups to complex interventional procedures, ensuring your heart is in the best hands.",
+  "Consultations": {
+    title: "Consultations",
+    department: "OUTPATIENT",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop",
+    description: "Expert medical consultations and personalized care plans tailored to your specific health needs.",
+    quote: "Our primary goal is to understand your health concerns and provide clear, actionable medical advice.",
     benefits: [
-      { title: "Expert Cardiologists", text: "Our team includes some of the region's most renowned cardiac specialists and surgeons." },
-      { title: "Advanced Diagnostics", text: "Equipped with the latest in echocardiography, stress testing, and cardiac catheterization." },
-      { title: "Cardiac Rehabilitation", text: "Personalized recovery programs designed to safely strengthen your heart post-procedure." }
+      { title: "Expert Diagnosis", text: "Thorough clinical evaluations by experienced medical professionals." },
+      { title: "Personalized Plans", text: "Customized treatment strategies for long-term health." },
+      { title: "Follow-up Care", text: "Continuous monitoring and support for chronic conditions." }
     ]
   },
-  "General Surgery": {
-    title: "General Surgery",
-    department: "DEPARTMENT",
+  "Laparoscopy": {
+    title: "Laparoscopy",
+    department: "SURGERY",
     image: "https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=1200&auto=format&fit=crop",
-    description: "Precision, compassion, and advanced techniques for every surgical journey. Our surgical department is equipped with state-of-the-art technology to perform both minimally invasive and complex traditional open surgeries.",
-    quote: "General Surgery involves a wide range of procedures to treat various conditions. Our experienced surgical team performs both minor and major operations using the latest techniques to ensure optimal outcomes and a speedy recovery.",
+    description: "Minimally invasive surgical procedures using advanced camera technology for precise diagnosis and treatment.",
+    quote: "Laparoscopic surgery offers significantly faster recovery times and minimal scarring compared to traditional methods.",
     benefits: [
-      { title: "Experienced Surgeons", text: "Our surgeons are highly skilled and experienced in performing a variety of procedures, ensuring safe and effective treatment with optimal outcomes." },
-      { title: "Minimal Invasive Techniques", text: "We use the latest laparoscopic and robotic-assisted techniques, significantly reducing recovery time, scarring, and post-operative discomfort." },
-      { title: "Personalized Care", text: "Each patient receives a customized care plan tailored to their unique physiological needs, ensuring the best possible surgical experience and aftercare." }
+      { title: "Minimal Scarring", text: "Small incisions lead to better cosmetic outcomes and less post-operative pain." },
+      { title: "Faster Recovery", text: "Return to your daily activities much sooner than with open surgery." },
+      { title: "High Precision", text: "Advanced optics provide surgeons with a magnified, high-definition view." }
     ]
   },
-  "Oncology": {
-    title: "Oncology",
-    department: "DEPARTMENT",
-    image: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=1200&auto=format&fit=crop",
-    description: "Multi-disciplinary cancer care, including chemotherapy, radiation, and surgical oncology. We stand by our patients at every stage of their journey.",
-    quote: "Fighting cancer requires a dedicated, unified approach. Our multidisciplinary tumor board ensures every patient benefits from a collaborative treatment strategy.",
+  "Endoscopy": {
+    title: "Endoscopy & Colonoscopy",
+    department: "DIAGNOSTICS",
+    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop",
+    description: "Advanced diagnostic imaging and therapeutic procedures of the digestive tract.",
+    quote: "Early detection through endoscopic screening is the most effective way to prevent gastrointestinal diseases.",
     benefits: [
-      { title: "Comprehensive Treatment", text: "Access to advanced chemotherapy, targeted therapies, and precision radiation oncology." },
-      { title: "Supportive Care", text: "Holistic support including nutritional counseling, pain management, and psychological support." },
-      { title: "Clinical Trials", text: "Providing eligible patients access to groundbreaking new therapies and clinical research." }
+      { title: "Accurate Screening", text: "Gold-standard procedures for detecting ulcers, polyps, and early signs of cancer." },
+      { title: "Therapeutic Intervention", text: "Simultaneous diagnosis and removal of polyps or treatment of bleeding." },
+      { title: "Comfortable Experience", text: "Performed under conscious sedation to ensure maximum patient comfort." }
     ]
   },
-  "Orthopedics": {
-    title: "Orthopedics",
-    department: "DEPARTMENT",
-    image: "https://images.unsplash.com/photo-1579684453423-f84349ef60b0?q=80&w=1200&auto=format&fit=crop",
-    description: "Comprehensive bone, joint, and spine surgery with accelerated rehabilitation protocols to get you moving pain-free.",
-    quote: "From sports injuries to complex joint replacements, our orthopedic specialists are committed to restoring your mobility and improving your quality of life.",
+  "Minor Theatre": {
+    title: "Minor Theatre",
+    department: "PROCEDURES",
+    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200&auto=format&fit=crop",
+    description: "Fully equipped for minor surgical procedures, emergency wound care, and day-case treatments.",
+    quote: "Our minor theatre provides a sterile, efficient environment for procedures that don't require full hospital admission.",
     benefits: [
-      { title: "Joint Replacement", text: "State-of-the-art knee, hip, and shoulder replacement surgeries with high success rates." },
-      { title: "Sports Medicine", text: "Specialized care for athletes, focusing on arthroscopic repairs and rapid recovery." },
-      { title: "Spine Surgery", text: "Advanced treatments for spinal disorders, ranging from minimally invasive fusions to disc replacements." }
-    ]
-  },
-  "Maternity": {
-    title: "Maternity",
-    department: "DEPARTMENT",
-    image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=1200&auto=format&fit=crop",
-    description: "Premium maternity wings and specialized NICU for the safest delivery experience for both mother and child.",
-    quote: "Bringing a new life into the world is a profound journey. Our maternity team provides safe, compassionate, and expert care for you and your newborn.",
-    benefits: [
-      { title: "Luxury Maternity Suites", text: "Comfortable, private rooms designed to provide a serene environment for your recovery and bonding." },
-      { title: "Level III NICU", text: "A fully equipped Neonatal Intensive Care Unit ready to support premature or critically ill newborns." },
-      { title: "Expert Obstetricians", text: "24/7 access to highly experienced obstetricians, midwives, and lactation consultants." }
+      { title: "Day-Case Procedures", text: "Efficient treatments allowing you to return home the same day." },
+      { title: "Wound Management", text: "Expert suturing and care for lacerations and minor trauma." },
+      { title: "Excision & Biopsies", text: "Quick and painless removal of skin lesions and diagnostic biopsies." }
     ]
   }
 };
@@ -69,7 +57,7 @@ const servicesData = {
 type ServiceKey = keyof typeof servicesData;
 
 export default function ServicesPage() {
-  const [activeService, setActiveService] = useState<ServiceKey>("General Surgery");
+  const [activeService, setActiveService] = useState<ServiceKey>("Consultations");
 
   const service = servicesData[activeService];
 
@@ -78,19 +66,19 @@ export default function ServicesPage() {
       
       {/* Dark Sub-header Tabs */}
       <div className="bg-white border-b border-slate-200 w-full shadow-sm relative z-20">
-        <div className="container mx-auto flex">
-          <div className="w-full md:w-[250px] bg-teal-600 text-white py-6 px-6 flex flex-col items-center justify-center">
-             <span className="text-[10px] font-bold uppercase tracking-widest">CLINICAL SERVICES</span>
+        <div className="container mx-auto flex flex-col md:flex-row">
+          <div className="w-full md:w-[250px] bg-teal-600 text-white py-4 md:py-6 px-4 flex flex-col items-center justify-center">
+             <span className="text-[10px] font-bold uppercase tracking-widest text-center">CLINICAL SERVICES</span>
           </div>
           <div className="flex-1 flex justify-around">
-            <button onClick={() => setActiveService("General Surgery")} className="flex-1 border-r border-slate-200 flex flex-col items-center justify-center p-4 hover:bg-slate-50 cursor-pointer transition-colors text-slate-600 hover:text-teal-700">
-               <span className="text-[10px] font-bold uppercase tracking-widest">DIAGNOSTICS</span>
+            <button onClick={() => setActiveService("Laparoscopy")} className="flex-1 border-r border-slate-200 flex flex-col items-center justify-center p-2 md:p-4 hover:bg-slate-50 cursor-pointer transition-colors text-slate-600 hover:text-teal-700">
+               <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">LAPAROSCOPY</span>
             </button>
-            <button onClick={() => setActiveService("General Surgery")} className="flex-1 border-r border-slate-200 flex flex-col items-center justify-center p-4 hover:bg-slate-50 cursor-pointer transition-colors text-slate-600 hover:text-teal-700">
-               <span className="text-[10px] font-bold uppercase tracking-widest">SURGERY</span>
+            <button onClick={() => setActiveService("Endoscopy")} className="flex-1 border-r border-slate-200 flex flex-col items-center justify-center p-2 md:p-4 hover:bg-slate-50 cursor-pointer transition-colors text-slate-600 hover:text-teal-700">
+               <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">ENDOSCOPY</span>
             </button>
-            <button onClick={() => setActiveService("Maternity")} className="flex-1 flex flex-col items-center justify-center p-4 hover:bg-slate-50 cursor-pointer transition-colors text-slate-600 hover:text-teal-700">
-               <span className="text-[10px] font-bold uppercase tracking-widest">MATERNITY</span>
+            <button onClick={() => setActiveService("Minor Theatre")} className="flex-1 flex flex-col items-center justify-center p-2 md:p-4 hover:bg-slate-50 cursor-pointer transition-colors text-slate-600 hover:text-teal-700">
+               <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">THEATRE</span>
             </button>
           </div>
         </div>
@@ -126,9 +114,9 @@ export default function ServicesPage() {
           
           <div className="h-[350px] w-full bg-slate-200 relative overflow-hidden animate-in fade-in duration-500" key={service.title + "-img"}>
             <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent flex flex-col justify-end p-8 md:p-12">
-               <span className="bg-teal-500 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 mb-4 rounded-full w-max shadow-sm">{service.department}</span>
-               <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-white leading-none">{service.title}</h1>
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent flex flex-col justify-end p-6 md:p-12">
+               <span className="bg-teal-500 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 mb-2 md:mb-4 rounded-full w-max shadow-sm">{service.department}</span>
+               <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white leading-none">{service.title}</h1>
             </div>
           </div>
 
@@ -157,9 +145,9 @@ export default function ServicesPage() {
                 </div>
               </div>
               
-              <div className="bg-teal-50 border border-teal-100 rounded-3xl p-8 md:p-12 flex flex-col justify-center shadow-inner relative overflow-hidden">
-                <span className="text-6xl text-teal-200/50 absolute top-4 left-6 font-serif">"</span>
-                <h3 className="text-xl font-medium tracking-tight leading-relaxed mb-8 text-teal-900 relative z-10 italic">
+              <div className="bg-teal-50 border border-teal-100 rounded-3xl p-6 md:p-12 flex flex-col justify-center shadow-inner relative overflow-hidden">
+                <span className="text-6xl text-teal-200/50 absolute top-2 left-4 md:top-4 md:left-6 font-serif">"</span>
+                <h3 className="text-lg md:text-xl font-medium tracking-tight leading-relaxed mb-6 md:mb-8 text-teal-900 relative z-10 italic">
                   {service.quote}
                 </h3>
                 <Link href="/book" className="mt-auto inline-block text-center bg-teal-600 text-white px-8 py-4 text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-teal-700 transition-colors self-start shadow-lg shadow-teal-600/20 hover:shadow-xl hover:-translate-y-0.5">
