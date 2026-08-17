@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { MessageCircle, ShieldCheck, Accessibility, ChevronDown, PhoneCall } from "lucide-react";
 
-const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Kenya Central Clinic | Next-Generation Healthcare",
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jakarta.className} bg-[#F7EFE5] text-[#1A3636] min-h-screen flex flex-col`}>
+      <body className={`${inter.className} bg-[#F7EFE5] text-[#1A3636] min-h-screen flex flex-col`}>
         
         {/* Top Utility Bar */}
         <div className="bg-[#1A3636] text-white py-1.5 px-4 md:px-8 text-[11px] font-medium tracking-wide flex justify-between items-center">
