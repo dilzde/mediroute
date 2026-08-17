@@ -7,7 +7,7 @@ const servicesData = {
   "Consultations": {
     title: "Consultations",
     department: "OUTPATIENT",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/consultations.jpg",
     description: "Expert medical consultations and personalized care plans tailored to your specific health needs.",
     quote: "Our primary goal is to understand your health concerns and provide clear, actionable medical advice.",
     benefits: [
@@ -19,7 +19,7 @@ const servicesData = {
   "Laparoscopy": {
     title: "Laparoscopy",
     department: "SURGERY",
-    image: "https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/laparoscopy.jpg",
     description: "Minimally invasive surgical procedures using advanced camera technology for precise diagnosis and treatment.",
     quote: "Laparoscopic surgery offers significantly faster recovery times and minimal scarring compared to traditional methods.",
     benefits: [
@@ -31,7 +31,7 @@ const servicesData = {
   "Endoscopy": {
     title: "Endoscopy & Colonoscopy",
     department: "DIAGNOSTICS",
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/endoscopy.jpg",
     description: "Advanced diagnostic imaging and therapeutic procedures of the digestive tract.",
     quote: "Early detection through endoscopic screening is the most effective way to prevent gastrointestinal diseases.",
     benefits: [
@@ -43,7 +43,7 @@ const servicesData = {
   "Minor Theatre": {
     title: "Minor Theatre",
     department: "PROCEDURES",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/minor_theatre.jpg",
     description: "Fully equipped for minor surgical procedures, emergency wound care, and day-case treatments.",
     quote: "Our minor theatre provides a sterile, efficient environment for procedures that don't require full hospital admission.",
     benefits: [

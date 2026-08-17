@@ -20,8 +20,8 @@ export default function HomePage() {
           <div className="flex-1 grid grid-cols-1 md:grid-cols-3 p-6 gap-6 bg-slate-100">
             
             <Link href="/services" className="flex flex-col group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:-translate-y-1">
-              <div className="h-56 w-full relative overflow-hidden">
-                 <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop" alt="Laparoscopy & Surgery" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div className="h-56 w-full relative overflow-hidden bg-slate-50">
+                 <img src="/images/laparoscopy.jpg" alt="Laparoscopy & Surgery" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 p-4" />
               </div>
               <div className="p-6 flex justify-between items-end flex-1">
                 <h3 className="text-xl font-black tracking-tighter uppercase leading-none text-slate-800">LAPAROSCOPY<br />& SURGERY</h3>
@@ -30,8 +30,8 @@ export default function HomePage() {
             </Link>
             
             <Link href="/services" className="flex flex-col group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:-translate-y-1">
-              <div className="h-56 w-full relative overflow-hidden">
-                 <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop" alt="Endoscopy & Colonoscopy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div className="h-56 w-full relative overflow-hidden bg-slate-50">
+                 <img src="/images/endoscopy.jpg" alt="Endoscopy & Colonoscopy" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 p-4" />
               </div>
               <div className="p-6 flex justify-between items-end flex-1">
                 <h3 className="text-xl font-black tracking-tighter uppercase leading-none text-slate-800">ENDOSCOPY &<br />COLONOSCOPY</h3>
@@ -40,8 +40,8 @@ export default function HomePage() {
             </Link>
 
             <Link href="/services" className="flex flex-col group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:-translate-y-1">
-              <div className="h-56 w-full relative overflow-hidden">
-                 <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop" alt="Minor Theatre" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div className="h-56 w-full relative overflow-hidden bg-slate-50">
+                 <img src="/images/minor_theatre.jpg" alt="Minor Theatre" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 p-4" />
               </div>
               <div className="p-6 flex justify-between items-end flex-1">
                 <h3 className="text-xl font-black tracking-tighter uppercase leading-none text-slate-800">MINOR<br />THEATRE</h3>
@@ -86,8 +86,8 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           
           <Link href="/services" className="p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 group cursor-pointer transition-all hover:-translate-y-1 flex flex-col items-start relative overflow-hidden">
-            <div className="w-full h-40 mb-6 bg-slate-100 rounded-2xl overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=400&auto=format&fit=crop" alt="Laparoscopy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div className="w-full h-40 mb-6 bg-slate-100 rounded-2xl overflow-hidden flex items-center justify-center p-2">
+              <img src="/images/laparoscopy.jpg" alt="Laparoscopy" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
             </div>
             <h3 className="text-sm font-bold uppercase tracking-widest mb-4 text-slate-800">LAPAROSCOPY</h3>
             <p className="text-[11px] text-slate-500 leading-relaxed mb-8">Minimally invasive surgical procedures using advanced camera technology for precise diagnosis.</p>
@@ -95,8 +95,8 @@ export default function HomePage() {
           </Link>
 
           <Link href="/services" className="p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 group cursor-pointer transition-all hover:-translate-y-1 flex flex-col items-start relative overflow-hidden">
-            <div className="w-full h-40 mb-6 bg-slate-100 rounded-2xl overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=400&auto=format&fit=crop" alt="Endoscopy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div className="w-full h-40 mb-6 bg-slate-100 rounded-2xl overflow-hidden flex items-center justify-center p-2">
+              <img src="/images/endoscopy.jpg" alt="Endoscopy" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
             </div>
             <h3 className="text-sm font-bold uppercase tracking-widest mb-4 text-slate-800">ENDOSCOPY</h3>
             <p className="text-[11px] text-slate-500 leading-relaxed mb-8">Advanced diagnostic imaging and therapeutic procedures of the digestive tract.</p>
@@ -104,8 +104,8 @@ export default function HomePage() {
           </Link>
 
           <Link href="/services" className="p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 group cursor-pointer transition-all hover:-translate-y-1 flex flex-col items-start relative overflow-hidden">
-            <div className="w-full h-40 mb-6 bg-slate-100 rounded-2xl overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=400&auto=format&fit=crop" alt="Minor Theatre" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div className="w-full h-40 mb-6 bg-slate-100 rounded-2xl overflow-hidden flex items-center justify-center p-2">
+              <img src="/images/minor_theatre.jpg" alt="Minor Theatre" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
             </div>
             <h3 className="text-sm font-bold uppercase tracking-widest mb-4 text-slate-800">MINOR THEATRE</h3>
             <p className="text-[11px] text-slate-500 leading-relaxed mb-8">Fully equipped for minor surgical procedures, emergency wound care, and day-case treatments.</p>
@@ -113,8 +113,8 @@ export default function HomePage() {
           </Link>
 
           <Link href="/services" className="p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-200 group cursor-pointer transition-all hover:-translate-y-1 flex flex-col items-start relative overflow-hidden">
-            <div className="w-full h-40 mb-6 bg-slate-100 rounded-2xl overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=400&auto=format&fit=crop" alt="Consultations" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <div className="w-full h-40 mb-6 bg-slate-100 rounded-2xl overflow-hidden flex items-center justify-center p-2">
+              <img src="/images/consultations.jpg" alt="Consultations" className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
             </div>
             <h3 className="text-sm font-bold uppercase tracking-widest mb-4 text-slate-800">CONSULTATIONS</h3>
             <p className="text-[11px] text-slate-500 leading-relaxed mb-8">Expert medical consultations and personalized care plans tailored to your health needs.</p>
