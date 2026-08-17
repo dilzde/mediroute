@@ -48,47 +48,89 @@ export default function Home() {
       {/* 2. Sub-Sections & Value Props (Grid Cards) */}
       <section className="py-24 px-4 md:px-8 bg-white rounded-t-[3rem] -mt-12 relative z-10">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            {/* Card 1: Virtual Care */}
-            <Link href="/book" className="group bg-[#F7EFE5]/50 p-8 rounded-3xl border border-[#1A3636]/5 hover:bg-[#F7EFE5] hover:shadow-xl transition-all duration-300 flex flex-col h-full">
-              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-[#1A3636] mb-6 shadow-sm group-hover:scale-110 transition-transform">
-                <Video size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-[#1A3636] mb-3">24/7 Virtual Urgent Care</h3>
-              <p className="text-[#1A3636]/70 font-medium leading-relaxed mb-8 flex-1">
-                Connect with a specialist in minutes from the comfort of your home. Perfect for common illnesses and follow-ups.
-              </p>
-              <div className="flex items-center text-[#1A3636] font-bold text-sm">
-                Start a Visit <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
-
-            {/* Card 2: In-Person */}
-            <Link href="/book" className="group bg-[#1A3636] p-8 rounded-3xl hover:bg-blue-900 shadow-xl transition-all duration-300 flex flex-col h-full text-[#F7EFE5]">
-              <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-white mb-6 backdrop-blur-sm group-hover:scale-110 transition-transform">
-                <MapPin size={24} />
-              </div>
-              <h3 className="text-xl font-bold mb-3">In-Person Visits</h3>
-              <p className="text-white/70 font-medium leading-relaxed mb-8 flex-1">
-                Schedule a consultation or procedure at our state-of-the-art Nairobi facility with our expert surgical team.
-              </p>
-              <div className="flex items-center font-bold text-sm text-white">
-                Find a Time <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </Link>
-
-            {/* Card 3: Insurance */}
-            <Link href="/billing" className="group bg-[#F7EFE5]/50 p-8 rounded-3xl border border-[#1A3636]/5 hover:bg-[#F7EFE5] hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+            {/* Tile 1 */}
+            <Link href="/services/consultations" className="group bg-[#F7EFE5]/50 p-8 rounded-3xl border border-[#1A3636]/5 hover:bg-[#F7EFE5] hover:shadow-xl transition-all duration-300 flex flex-col h-full">
               <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-[#1A3636] mb-6 shadow-sm group-hover:scale-110 transition-transform">
                 <Stethoscope size={24} />
               </div>
-              <h3 className="text-xl font-bold text-[#1A3636] mb-3">Insurance Verification</h3>
+              <h3 className="text-xl font-bold text-[#1A3636] mb-3">Specialist Consultations</h3>
               <p className="text-[#1A3636]/70 font-medium leading-relaxed mb-8 flex-1">
-                We accept most major insurance plans. Verify your coverage instantly and understand your estimated costs upfront.
+                In-person & Telehealth consultations for complex gastroenterology and general surgery needs.
               </p>
               <div className="flex items-center text-[#1A3636] font-bold text-sm">
-                Check Insurance <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                Learn More <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+
+            {/* Tile 2 */}
+            <Link href="/services/laparoscopy" className="group bg-[#1A3636] p-8 rounded-3xl hover:bg-blue-900 shadow-xl transition-all duration-300 flex flex-col h-full text-[#F7EFE5]">
+              <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-white mb-6 backdrop-blur-sm group-hover:scale-110 transition-transform">
+                <Activity size={24} />
+              </div>
+              <h3 className="text-xl font-bold mb-3">Laparoscopy & Keyhole</h3>
+              <p className="text-white/70 font-medium leading-relaxed mb-8 flex-1">
+                Advanced minimally invasive surgery for gallbladder, appendix, and hernia repair.
+              </p>
+              <div className="flex items-center font-bold text-sm text-white">
+                View Procedures <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+
+            {/* Tile 3 */}
+            <Link href="/services/endoscopy" className="group bg-[#F7EFE5]/50 p-8 rounded-3xl border border-[#1A3636]/5 hover:bg-[#F7EFE5] hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-[#1A3636] mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                <Search size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-[#1A3636] mb-3">Endoscopy & Colonoscopy</h3>
+              <p className="text-[#1A3636]/70 font-medium leading-relaxed mb-8 flex-1">
+                Diagnostic and screening procedures for digestive health, performed with maximum comfort.
+              </p>
+              <div className="flex items-center text-[#1A3636] font-bold text-sm">
+                Learn More <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+
+            {/* Tile 4 */}
+            <Link href="/services/minor-theatre" className="group bg-[#F7EFE5]/50 p-8 rounded-3xl border border-[#1A3636]/5 hover:bg-[#F7EFE5] hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-[#1A3636] mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                <Activity size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-[#1A3636] mb-3">Minor Theatre</h3>
+              <p className="text-[#1A3636]/70 font-medium leading-relaxed mb-8 flex-1">
+                Safe, swift outpatient procedures including lipomas, biopsies, and advanced wound care.
+              </p>
+              <div className="flex items-center text-[#1A3636] font-bold text-sm">
+                Learn More <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+
+            {/* Tile 5 */}
+            <Link href="/book" className="group bg-blue-600 p-8 rounded-3xl hover:bg-blue-700 shadow-xl transition-all duration-300 flex flex-col h-full text-white">
+              <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-white mb-6 backdrop-blur-sm group-hover:scale-110 transition-transform">
+                <CalendarDays size={24} />
+              </div>
+              <h3 className="text-xl font-bold mb-3">Online Booking Hub</h3>
+              <p className="text-white/80 font-medium leading-relaxed mb-8 flex-1">
+                Direct access to our consultant calendar. Book, reschedule, and manage your appointments instantly.
+              </p>
+              <div className="flex items-center font-bold text-sm text-white">
+                Schedule Now <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+
+            {/* Tile 6 */}
+            <Link href="/insurance" className="group bg-[#F7EFE5]/50 p-8 rounded-3xl border border-[#1A3636]/5 hover:bg-[#F7EFE5] hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-[#1A3636] mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                <ShieldCheck size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-[#1A3636] mb-3">Insurance & Partners</h3>
+              <p className="text-[#1A3636]/70 font-medium leading-relaxed mb-8 flex-1">
+                We partner with NHIF/SHIF, Jubilee, APA, GA, and more to ensure seamless billing.
+              </p>
+              <div className="flex items-center text-[#1A3636] font-bold text-sm">
+                View Accepted Plans <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </div>
             </Link>
 

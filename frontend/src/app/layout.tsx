@@ -130,21 +130,39 @@ export default function RootLayout({
               </ul>
             </div>
 
-            {/* Col 4: Corporate */}
+            {/* Col 4: Contact & Directions */}
             <div>
-              <h4 className="font-bold text-xs uppercase tracking-widest text-white/40 mb-6">Corporate</h4>
-              <ul className="space-y-4 text-sm text-white/80 font-medium">
-                <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
-                <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
+              <h4 className="font-bold text-xs uppercase tracking-widest text-white/40 mb-6">Contact & Emergency</h4>
+              <ul className="space-y-4 text-sm text-white/80 font-medium mb-6">
+                <li className="flex items-start gap-2">
+                  <PhoneCall size={16} className="text-red-400 shrink-0 mt-0.5" />
+                  <span>
+                    Post-Op Emergency: <br/>
+                    <a href="tel:0700000000" className="text-white hover:text-red-300">0700 000 000</a> (24/7)
+                  </span>
+                </li>
+                <li>General: info@kenyacentral.co.ke</li>
               </ul>
+              
+              {/* Maps Placeholder */}
+              <div className="w-full h-24 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center overflow-hidden relative group">
+                <div className="absolute inset-0 bg-[#1A3636]/50 group-hover:bg-[#1A3636]/20 transition-colors z-10 flex items-center justify-center">
+                  <span className="text-xs font-bold uppercase tracking-widest text-white">View on Map</span>
+                </div>
+                {/* Abstract grid for map placeholder */}
+                <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
+              </div>
             </div>
 
           </div>
 
-          <div className="container mx-auto px-4 md:px-8 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-white/50">
-            <p>© {new Date().getFullYear()} Kenya Central Clinic. All rights reserved.</p>
-            <div className="flex gap-6 mt-4 md:mt-0 font-medium">
+          <div className="container mx-auto px-4 md:px-8 border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-start md:items-center text-xs text-white/50 gap-6">
+            <div>
+              <p className="mb-2">© {new Date().getFullYear()} Kenya Central Clinic. All rights reserved.</p>
+              <p className="opacity-70">KMPDC Facility License No: <span className="font-mono text-white/90">KMPDC/2026/00142</span></p>
+            </div>
+            
+            <div className="flex gap-6 font-medium">
               <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
               <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
               <Link href="/disclaimer" className="hover:text-white transition-colors">Notice of Privacy Practices</Link>
@@ -152,10 +170,11 @@ export default function RootLayout({
           </div>
         </footer>
 
-        {/* Floating Chat Button */}
-        <button className="fixed bottom-6 right-6 w-14 h-14 bg-[#1A3636] text-[#F7EFE5] rounded-full flex items-center justify-center shadow-2xl hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(26,54,54,0.3)] transition-all z-50 group">
-          <MessageCircle size={24} className="group-hover:scale-110 transition-transform" />
-        </button>
+        {/* Floating WhatsApp Action */}
+        <a href="https://wa.me/254700000000" target="_blank" rel="noopener noreferrer" className="fixed bottom-6 right-6 px-6 py-4 bg-green-600 text-white rounded-full flex items-center justify-center shadow-2xl hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(22,163,74,0.3)] transition-all z-50 group gap-3 font-bold text-sm tracking-wide">
+          <MessageCircle size={20} className="group-hover:scale-110 transition-transform" />
+          Book via WhatsApp
+        </a>
 
       </body>
     </html>

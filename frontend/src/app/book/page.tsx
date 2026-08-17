@@ -1,15 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { CheckCircle2, CalendarDays, Clock, User, ArrowRight, Activity, Upload, Building2 } from "lucide-react";
+import { CheckCircle2, CalendarDays, Clock, User, ArrowRight, Activity, Upload, Building2, UserCircle } from "lucide-react";
 import Link from "next/link";
 
 const SERVICES = [
-  { id: "consultation", name: "Consultations", category: "Outpatient" },
-  { id: "laparoscopy", name: "Laparoscopy", category: "Surgery" },
-  { id: "endoscopy", name: "Endoscopy", category: "Diagnostics" },
-  { id: "colonoscopy", name: "Colonoscopy", category: "Diagnostics" },
-  { id: "minor-theatre", name: "Minor Theatre", category: "Procedures" },
+  { id: "consultation", name: "Specialist Consultation", category: "Outpatient" },
+  { id: "laparoscopy", name: "Laparoscopy & Keyhole Surgery", category: "Surgery" },
+  { id: "endoscopy", name: "Endoscopy & Colonoscopy", category: "Diagnostics" },
+  { id: "minor-theatre", name: "Minor Theatre Procedure", category: "Procedures" },
+];
+
+const CONSULTANTS = [
+  { id: "dr-madaraka", name: "Dr. Madaraka Ogoye", title: "Chief Consultant Surgeon", badges: ["KMPDC Board Certified", "Speaks Swahili & English"] }
 ];
 
 const TIME_SLOTS = [
@@ -18,13 +21,13 @@ const TIME_SLOTS = [
 ];
 
 const INSURANCE_PROVIDERS = [
-  "NHIF (National Hospital Insurance Fund)",
+  "Cash / M-Pesa",
+  "NHIF / SHIF",
   "Jubilee Insurance",
   "UAP Old Mutual",
   "AAR Insurance",
   "Britam",
   "Madison Insurance",
-  "Self-Pay / Out of Pocket"
 ];
 
 // Helper to generate the next 14 days
@@ -45,10 +48,10 @@ export default function BookingPage() {
   
   // Form State
   const [selectedService, setSelectedService] = useState("");
+  const [selectedConsultant, setSelectedConsultant] = useState("");
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState("");
   const [insurance, setInsurance] = useState("");
-  const [insuranceFile, setInsuranceFile] = useState<File | null>(null);
   
   const [patientDetails, setPatientDetails] = useState({
     firstName: "",
@@ -121,16 +124,17 @@ export default function BookingPage() {
           <div className="flex items-center gap-2 md:gap-4 overflow-x-auto pb-4 md:pb-0 scrollbar-hide">
             {[
               { num: 1, label: "Service" },
-              { num: 2, label: "Date & Time" },
-              { num: 3, label: "Insurance" },
-              { num: 4, label: "Details" }
+              { num: 2, label: "Consultant" },
+              { num: 3, label: "Date & Time" },
+              { num: 4, label: "Triage" },
+              { num: 5, label: "Details" }
             ].map((s, i) => (
               <div key={s.num} className="flex items-center gap-2 shrink-0">
                 <div className={`flex items-center gap-2 ${step >= s.num ? 'text-[#1A3636]' : 'text-[#1A3636]/30'}`}>
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-colors ${step >= s.num ? 'bg-[#1A3636] text-white' : 'bg-slate-100'}`}>{s.num}</div>
                   <span className="text-[10px] font-bold uppercase tracking-widest">{s.label}</span>
                 </div>
-                {i < 3 && <div className={`h-px w-6 md:w-12 ml-2 transition-colors ${step > s.num ? 'bg-[#1A3636]' : 'bg-slate-200'}`}></div>}
+                {i < 4 && <div className={`h-px w-4 md:w-8 ml-2 transition-colors ${step > s.num ? 'bg-[#1A3636]' : 'bg-slate-200'}`}></div>}
               </div>
             ))}
           </div>
@@ -168,14 +172,56 @@ export default function BookingPage() {
               </div>
             )}
 
-            {/* STEP 2: DATE & TIME */}
+            {/* STEP 2: CONSULTANT */}
             {step === 2 && (
+              <div className="animate-in fade-in duration-500">
+                <div className="flex items-center justify-between mb-8">
+                  <h2 className="text-2xl font-black tracking-tight text-[#1A3636] flex items-center gap-3">
+                    <UserCircle className="text-teal-600" /> Choose Consultant
+                  </h2>
+                  <button onClick={() => setStep(1)} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#1A3636]">← Back</button>
+                </div>
+                
+                <div className="grid grid-cols-1 gap-4">
+                  {CONSULTANTS.map((consultant) => (
+                    <button
+                      key={consultant.id}
+                      onClick={() => { setSelectedConsultant(consultant.id); setStep(3); }}
+                      className={`p-6 rounded-3xl border-2 text-left transition-all duration-300 flex items-center gap-6 ${
+                        selectedConsultant === consultant.id 
+                          ? 'border-[#1A3636] bg-[#1A3636] text-white shadow-lg' 
+                          : 'border-slate-100 bg-white hover:border-[#1A3636]/20 hover:bg-[#F7EFE5]/30'
+                      }`}
+                    >
+                      <div className="w-16 h-16 rounded-full bg-slate-200 overflow-hidden flex-shrink-0">
+                         {/* Placeholder for consultant photo */}
+                         <div className="w-full h-full bg-slate-300"></div>
+                      </div>
+                      <div>
+                        <h3 className={`text-xl font-bold mb-1 ${selectedConsultant === consultant.id ? 'text-white' : 'text-[#1A3636]'}`}>{consultant.name}</h3>
+                        <p className={`text-sm mb-3 ${selectedConsultant === consultant.id ? 'text-white/70' : 'text-[#1A3636]/70'}`}>{consultant.title}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {consultant.badges.map(badge => (
+                            <span key={badge} className={`text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded-md ${selectedConsultant === consultant.id ? 'bg-white/20 text-white' : 'bg-teal-50 text-teal-700'}`}>
+                              {badge}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* STEP 3: DATE & TIME */}
+            {step === 3 && (
               <div className="animate-in fade-in duration-500">
                 <div className="flex items-center justify-between mb-8">
                   <h2 className="text-2xl font-black tracking-tight text-[#1A3636] flex items-center gap-3">
                     <CalendarDays className="text-teal-600" /> When works for you?
                   </h2>
-                  <button onClick={() => setStep(1)} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#1A3636]">← Back</button>
+                  <button onClick={() => setStep(2)} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#1A3636]">← Back</button>
                 </div>
                 
                 {/* Horizontal Date Pills */}
@@ -238,55 +284,6 @@ export default function BookingPage() {
                 <div className="mt-12 pt-8 border-t border-slate-100 flex justify-end">
                   <button 
                     disabled={!selectedDate || !selectedTime}
-                    onClick={() => setStep(3)}
-                    className="bg-[#1A3636] text-[#F7EFE5] px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-teal-900 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-3 shadow-lg shadow-[#1A3636]/20"
-                  >
-                    Continue <ArrowRight size={16} />
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {/* STEP 3: INSURANCE & TRIAGE */}
-            {step === 3 && (
-              <div className="animate-in fade-in duration-500">
-                 <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-2xl font-black tracking-tight text-[#1A3636] flex items-center gap-3">
-                    <Building2 className="text-teal-600" /> Insurance Verification
-                  </h2>
-                  <button onClick={() => setStep(2)} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#1A3636]">← Back</button>
-                </div>
-
-                <div className="space-y-8">
-                  <div>
-                    <label className="block text-sm font-bold text-[#1A3636] mb-3">Select your primary provider</label>
-                    <select 
-                      value={insurance}
-                      onChange={(e) => setInsurance(e.target.value)}
-                      className="w-full p-5 rounded-2xl border border-slate-200 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none transition-all bg-slate-50 focus:bg-white text-[#1A3636] font-medium"
-                    >
-                      <option value="" disabled>Choose provider...</option>
-                      {INSURANCE_PROVIDERS.map(p => <option key={p} value={p}>{p}</option>)}
-                    </select>
-                  </div>
-
-                  {insurance && insurance !== "Self-Pay / Out of Pocket" && (
-                    <div>
-                      <label className="block text-sm font-bold text-[#1A3636] mb-3">Upload Insurance Card (Optional but recommended)</label>
-                      <div className="border-2 border-dashed border-slate-200 rounded-3xl p-10 flex flex-col items-center justify-center text-center hover:bg-slate-50 hover:border-teal-500 transition-colors cursor-pointer group">
-                        <div className="w-16 h-16 bg-slate-100 group-hover:bg-teal-50 rounded-full flex items-center justify-center mb-4 transition-colors">
-                          <Upload className="text-slate-400 group-hover:text-teal-500" />
-                        </div>
-                        <p className="font-bold text-[#1A3636] mb-1">Drag and drop your card photo here</p>
-                        <p className="text-xs text-slate-400">or click to browse from your device</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="mt-12 pt-8 border-t border-slate-100 flex justify-end">
-                  <button 
-                    disabled={!insurance}
                     onClick={() => setStep(4)}
                     className="bg-[#1A3636] text-[#F7EFE5] px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-teal-900 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-3 shadow-lg shadow-[#1A3636]/20"
                   >
@@ -296,14 +293,61 @@ export default function BookingPage() {
               </div>
             )}
 
-            {/* STEP 4: PATIENT DETAILS */}
+            {/* STEP 4: INSURANCE & TRIAGE */}
             {step === 4 && (
+              <div className="animate-in fade-in duration-500">
+                 <div className="flex items-center justify-between mb-8">
+                  <h2 className="text-2xl font-black tracking-tight text-[#1A3636] flex items-center gap-3">
+                    <Building2 className="text-teal-600" /> Triage & Payment
+                  </h2>
+                  <button onClick={() => setStep(3)} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#1A3636]">← Back</button>
+                </div>
+
+                <div className="space-y-8">
+                  <div>
+                    <label className="block text-sm font-bold text-[#1A3636] mb-3">Select your payment method or insurance provider</label>
+                    <select 
+                      value={insurance}
+                      onChange={(e) => setInsurance(e.target.value)}
+                      className="w-full p-5 rounded-2xl border border-slate-200 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none transition-all bg-slate-50 focus:bg-white text-[#1A3636] font-medium"
+                    >
+                      <option value="" disabled>Choose provider or payment type...</option>
+                      {INSURANCE_PROVIDERS.map(p => <option key={p} value={p}>{p}</option>)}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-bold text-[#1A3636] mb-3">Upload Referral Letters or Lab Results (Optional)</label>
+                    <div className="border-2 border-dashed border-slate-200 rounded-3xl p-10 flex flex-col items-center justify-center text-center hover:bg-slate-50 hover:border-teal-500 transition-colors cursor-pointer group">
+                      <div className="w-16 h-16 bg-slate-100 group-hover:bg-teal-50 rounded-full flex items-center justify-center mb-4 transition-colors">
+                        <Upload className="text-slate-400 group-hover:text-teal-500" />
+                      </div>
+                      <p className="font-bold text-[#1A3636] mb-1">Drag and drop your documents here</p>
+                      <p className="text-xs text-slate-400">or click to browse from your device</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-12 pt-8 border-t border-slate-100 flex justify-end">
+                  <button 
+                    disabled={!insurance}
+                    onClick={() => setStep(5)}
+                    className="bg-[#1A3636] text-[#F7EFE5] px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-teal-900 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-3 shadow-lg shadow-[#1A3636]/20"
+                  >
+                    Continue <ArrowRight size={16} />
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* STEP 5: PATIENT DETAILS */}
+            {step === 5 && (
               <form onSubmit={handleBookAppointment} className="animate-in fade-in duration-500">
                 <div className="flex items-center justify-between mb-8">
                   <h2 className="text-2xl font-black tracking-tight text-[#1A3636] flex items-center gap-3">
                     <User className="text-teal-600" /> About You
                   </h2>
-                  <button type="button" onClick={() => setStep(3)} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#1A3636]">← Back</button>
+                  <button type="button" onClick={() => setStep(4)} className="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#1A3636]">← Back</button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -390,17 +434,26 @@ export default function BookingPage() {
                     {selectedService ? SERVICES.find(s => s.id === selectedService)?.name : "—"}
                   </p>
                 </div>
+
+                {selectedConsultant && (
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-teal-400 mb-1">Consultant</p>
+                    <p className="text-sm font-bold text-white">
+                      {CONSULTANTS.find(c => c.id === selectedConsultant)?.name}
+                    </p>
+                  </div>
+                )}
                 
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-widest text-teal-400 mb-1">Date & Time</p>
-                  <p className="text-lg font-bold text-white">
+                  <p className="text-sm font-bold text-white">
                     {selectedDate ? selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }) : "—"}
-                    {selectedTime && <span className="block text-sm text-white/70 mt-1">{selectedTime}</span>}
+                    {selectedTime && <span className="block text-white/70 mt-1">{selectedTime}</span>}
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-teal-400 mb-1">Coverage</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-teal-400 mb-1">Coverage / Payment</p>
                   <p className="text-sm font-bold text-white/80">
                     {insurance || "—"}
                   </p>
