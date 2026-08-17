@@ -67,17 +67,17 @@ export default function ServicesPage() {
       {/* Dark Sub-header Tabs */}
       <div className="bg-white border-b border-slate-200 w-full shadow-sm relative z-20">
         <div className="container mx-auto flex flex-col md:flex-row">
-          <div className="w-full md:w-[250px] bg-teal-600 text-white py-4 md:py-6 px-4 flex flex-col items-center justify-center">
+          <div className="w-full md:w-[250px] bg-blue-600 text-white py-4 md:py-6 px-4 flex flex-col items-center justify-center">
              <span className="text-[10px] font-bold uppercase tracking-widest text-center">CLINICAL SERVICES</span>
           </div>
           <div className="flex-1 flex justify-around">
-            <button onClick={() => setActiveService("Laparoscopy")} className="flex-1 border-r border-slate-200 flex flex-col items-center justify-center p-2 md:p-4 hover:bg-slate-50 cursor-pointer transition-colors text-slate-600 hover:text-teal-700">
+            <button onClick={() => setActiveService("Laparoscopy")} className="flex-1 border-r border-slate-200 flex flex-col items-center justify-center p-2 md:p-4 hover:bg-slate-50 cursor-pointer transition-colors text-slate-600 hover:text-blue-700">
                <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">LAPAROSCOPY</span>
             </button>
-            <button onClick={() => setActiveService("Endoscopy")} className="flex-1 border-r border-slate-200 flex flex-col items-center justify-center p-2 md:p-4 hover:bg-slate-50 cursor-pointer transition-colors text-slate-600 hover:text-teal-700">
+            <button onClick={() => setActiveService("Endoscopy")} className="flex-1 border-r border-slate-200 flex flex-col items-center justify-center p-2 md:p-4 hover:bg-slate-50 cursor-pointer transition-colors text-slate-600 hover:text-blue-700">
                <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">ENDOSCOPY</span>
             </button>
-            <button onClick={() => setActiveService("Minor Theatre")} className="flex-1 flex flex-col items-center justify-center p-2 md:p-4 hover:bg-slate-50 cursor-pointer transition-colors text-slate-600 hover:text-teal-700">
+            <button onClick={() => setActiveService("Minor Theatre")} className="flex-1 flex flex-col items-center justify-center p-2 md:p-4 hover:bg-slate-50 cursor-pointer transition-colors text-slate-600 hover:text-blue-700">
                <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">THEATRE</span>
             </button>
           </div>
@@ -99,11 +99,11 @@ export default function ServicesPage() {
                 key={key}
                 onClick={() => setActiveService(key)} 
                 className={`w-full text-left block p-4 rounded-xl cursor-pointer group flex justify-between items-center transition-all ${
-                  activeService === key ? "bg-teal-50 text-teal-800 shadow-sm border border-teal-100 font-bold" : "hover:bg-white text-slate-600 border border-transparent hover:border-slate-200"
+                  activeService === key ? "bg-blue-50 text-blue-800 shadow-sm border border-blue-100 font-bold" : "hover:bg-white text-slate-600 border border-transparent hover:border-slate-200"
                 }`}
               >
                 <span className="text-xs uppercase tracking-widest">{key}</span>
-                <span className={`font-bold transition-transform ${activeService === key ? "text-teal-600 translate-x-1" : "text-slate-300"}`}>→</span>
+                <span className={`font-bold transition-transform ${activeService === key ? "text-blue-600 translate-x-1" : "text-slate-300"}`}>→</span>
               </button>
             ))}
           </div>
@@ -115,7 +115,7 @@ export default function ServicesPage() {
           <div className="h-[350px] w-full bg-slate-200 relative overflow-hidden animate-in fade-in duration-500" key={service.title + "-img"}>
             <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent flex flex-col justify-end p-6 md:p-12">
-               <span className="bg-teal-500 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 mb-2 md:mb-4 rounded-full w-max shadow-sm">{service.department}</span>
+               <span className="bg-blue-500 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 mb-2 md:mb-4 rounded-full w-max shadow-sm">{service.department}</span>
                <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white leading-none">{service.title}</h1>
             </div>
           </div>
@@ -134,7 +134,7 @@ export default function ServicesPage() {
                   
                   {service.benefits.map((benefit, i) => (
                     <div key={i} className="flex gap-6 items-start">
-                      <div className="w-10 h-10 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-black flex-shrink-0 mt-1 shadow-sm">{i + 1}</div>
+                      <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-black flex-shrink-0 mt-1 shadow-sm">{i + 1}</div>
                       <div>
                         <h3 className="font-bold text-sm uppercase tracking-widest mb-2 text-slate-800">{benefit.title}</h3>
                         <p className="text-sm text-slate-600 leading-relaxed">{benefit.text}</p>
@@ -145,12 +145,12 @@ export default function ServicesPage() {
                 </div>
               </div>
               
-              <div className="bg-teal-50 border border-teal-100 rounded-3xl p-6 md:p-12 flex flex-col justify-center shadow-inner relative overflow-hidden">
-                <span className="text-6xl text-teal-200/50 absolute top-2 left-4 md:top-4 md:left-6 font-serif">"</span>
-                <h3 className="text-lg md:text-xl font-medium tracking-tight leading-relaxed mb-6 md:mb-8 text-teal-900 relative z-10 italic">
+              <div className="bg-blue-50 border border-blue-100 rounded-3xl p-6 md:p-12 flex flex-col justify-center shadow-inner relative overflow-hidden">
+                <span className="text-6xl text-blue-200/50 absolute top-2 left-4 md:top-4 md:left-6 font-serif">"</span>
+                <h3 className="text-lg md:text-xl font-medium tracking-tight leading-relaxed mb-6 md:mb-8 text-blue-900 relative z-10 italic">
                   {service.quote}
                 </h3>
-                <Link href="/book" className="mt-auto inline-block text-center bg-teal-600 text-white px-8 py-4 text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-teal-700 transition-colors self-start shadow-lg shadow-teal-600/20 hover:shadow-xl hover:-translate-y-0.5">
+                <Link href="/book" className="mt-auto inline-block text-center bg-blue-600 text-white px-8 py-4 text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-blue-700 transition-colors self-start shadow-lg shadow-blue-600/20 hover:shadow-xl hover:-translate-y-0.5">
                   Consult with a Specialist
                 </Link>
               </div>
