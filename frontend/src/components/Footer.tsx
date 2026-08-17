@@ -34,9 +34,9 @@ export default function Footer() {
         <div>
           <h4 className="font-bold text-xs uppercase tracking-widest text-[#F8F9FA]/40 mb-6">Clinical Care</h4>
           <ul className="space-y-4 text-sm text-[#F8F9FA]/80 font-medium">
-            <li><Link href="/find-a-doctor" className="hover:text-white transition-colors">Find a Doctor</Link></li>
-            <li><Link href="/our-services" className="hover:text-white transition-colors">Conditions & Treatments</Link></li>
-            <li><Link href="/locations" className="hover:text-white transition-colors">Locations & Hours</Link></li>
+            <li><Link href="/about" className="hover:text-white transition-colors">Find a Doctor</Link></li>
+            <li><Link href="/services" className="hover:text-white transition-colors">Conditions & Treatments</Link></li>
+            <li><Link href="/contact" className="hover:text-white transition-colors">Locations & Hours</Link></li>
             <li><Link href="/book" className="hover:text-white transition-colors">Schedule Appointment</Link></li>
           </ul>
         </div>
@@ -45,10 +45,10 @@ export default function Footer() {
         <div>
           <h4 className="font-bold text-xs uppercase tracking-widest text-[#F8F9FA]/40 mb-6">Patients</h4>
           <ul className="space-y-4 text-sm text-[#F8F9FA]/80 font-medium">
-            <li><Link href="/for-patients" className="hover:text-white transition-colors">Patient Portal</Link></li>
-            <li><Link href="/billing" className="hover:text-white transition-colors">Billing & Insurance</Link></li>
-            <li><Link href="/medical-records" className="hover:text-white transition-colors">Medical Records</Link></li>
-            <li><Link href="/faqs" className="hover:text-white transition-colors">Help Center & FAQs</Link></li>
+            <li><Link href="/patient" className="hover:text-white transition-colors">Patient Portal</Link></li>
+            <li><Link href="/patient" className="hover:text-white transition-colors">Billing & Insurance</Link></li>
+            <li><Link href="/patient" className="hover:text-white transition-colors">Medical Records</Link></li>
+            <li><Link href="/patient" className="hover:text-white transition-colors">Help Center & FAQs</Link></li>
           </ul>
         </div>
 

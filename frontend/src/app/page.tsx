@@ -67,7 +67,7 @@ export default function Home() {
                 icon: <ShieldCheck size={20} />,
                 title: "Insurance & Partners",
                 desc: "Seamless billing with NHIF/SHIF, Jubilee, APA, GA, and more.",
-                link: "/insurance"
+                link: "/patient"
               }
             ].map((service, idx) => (
               <Link key={idx} href={service.link} className="bg-[#FFFFFF] p-10 rounded-[16px] hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl group flex flex-col h-full">

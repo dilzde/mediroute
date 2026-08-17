@@ -28,15 +28,10 @@ export default function Navigation() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-10">
-            {["Our Services", "Find a Doctor", "For Patients", "About Us"].map((item) => (
-              <Link 
-                key={item} 
-                href={`/${item.toLowerCase().replace(/ /g, '-')}`} 
-                className="text-sm font-bold text-[#112233] hover:text-[#007A78] transition-colors"
-              >
-                {item}
-              </Link>
-            ))}
+            <Link href="/services" className="text-sm font-bold text-[#112233] hover:text-[#007A78] transition-colors">Our Services</Link>
+            <Link href="/about" className="text-sm font-bold text-[#112233] hover:text-[#007A78] transition-colors">Find a Doctor</Link>
+            <Link href="/patient" className="text-sm font-bold text-[#112233] hover:text-[#007A78] transition-colors">For Patients</Link>
+            <Link href="/about" className="text-sm font-bold text-[#112233] hover:text-[#007A78] transition-colors">About Us</Link>
           </nav>
 
           {/* Actions */}
