@@ -4,57 +4,57 @@ export default function HomePage() {
   return (
     <main className="flex-1">
       {/* Hero Section */}
-      <section className="bg-[#f7f7f7] pt-24 pb-16 text-center border-b border-gray-200">
-        <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase max-w-4xl mx-auto leading-[0.95] mb-12">
+      <section className="bg-slate-50 pt-24 pb-16 text-center">
+        <h1 className="text-5xl md:text-7xl font-black tracking-tighter uppercase max-w-4xl mx-auto leading-[0.95] mb-12 text-slate-800">
           GETTING MEDICAL<br />SERVICES HAS<br />NEVER BEEN EASIER
         </h1>
       </section>
 
       {/* Grid Section */}
-      <section className="border-b border-gray-300">
-        <div className="flex flex-col md:flex-row">
+      <section className="border-t border-slate-200">
+        <div className="container mx-auto flex flex-col md:flex-row bg-white rounded-t-3xl overflow-hidden shadow-xl -mt-8 relative z-10">
           
           {/* Sidebar */}
-          <aside className="w-full md:w-64 flex-shrink-0 bg-[#f7f7f7] border-r border-gray-300 p-6">
-            <h3 className="text-[10px] font-bold uppercase tracking-widest mb-6">SELECT LOCATION</h3>
+          <aside className="w-full md:w-72 flex-shrink-0 bg-slate-50 border-r border-slate-200 p-8">
+            <h3 className="text-[10px] font-bold uppercase tracking-widest mb-6 text-slate-500">SELECT LOCATION</h3>
             <ul className="space-y-3">
-              <Link href="/find-a-doctor" className="block bg-[#eadd7b] p-3 text-xs font-bold border border-gray-300 flex justify-between items-center cursor-pointer">
+              <Link href="/find-a-doctor" className="block bg-teal-50 p-4 text-xs font-bold border border-teal-200 text-teal-900 rounded-xl flex justify-between items-center cursor-pointer shadow-sm">
                 <span>Kenya Central Clinic, Main Branch</span>
-                <span>✓</span>
+                <span className="text-teal-600">✓</span>
               </Link>
             </ul>
           </aside>
 
-          {/* 3 Image Cards */}
-          <div className="flex-1 grid grid-cols-1 md:grid-cols-3">
+          {/* Image Grid */}
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-3 p-6 gap-6 bg-slate-100">
             
-            <Link href="/services" className="border-r border-gray-300 flex flex-col group cursor-pointer">
-              <div className="h-64 bg-gray-200 w-full relative overflow-hidden">
+            <Link href="/services" className="flex flex-col group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:-translate-y-1">
+              <div className="h-56 w-full relative overflow-hidden">
                  <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop" alt="Laparoscopy & Surgery" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
-              <div className="bg-white p-8 flex justify-between items-end border-b border-gray-300 md:border-b-0 flex-1">
-                <h3 className="text-2xl font-black tracking-tighter uppercase leading-none group-hover:underline">LAPAROSCOPY<br />& SURGERY</h3>
-                <span className="text-xl font-bold">↗</span>
+              <div className="p-6 flex justify-between items-end flex-1">
+                <h3 className="text-xl font-black tracking-tighter uppercase leading-none text-slate-800">LAPAROSCOPY<br />& SURGERY</h3>
+                <span className="text-teal-600 font-bold bg-teal-50 w-8 h-8 flex items-center justify-center rounded-full group-hover:bg-teal-600 group-hover:text-white transition-colors">↗</span>
               </div>
             </Link>
             
-            <Link href="/services" className="border-r border-gray-300 flex flex-col group cursor-pointer">
-              <div className="h-64 bg-gray-200 w-full relative overflow-hidden">
+            <Link href="/services" className="flex flex-col group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:-translate-y-1">
+              <div className="h-56 w-full relative overflow-hidden">
                  <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop" alt="Accident & Emergency" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
-              <div className="bg-[#fcfcfc] p-8 flex justify-between items-end border-b border-gray-300 md:border-b-0 flex-1">
-                <h3 className="text-2xl font-black tracking-tighter uppercase leading-none group-hover:underline">ACCIDENT &<br />EMERGENCY</h3>
-                <span className="text-xl font-bold">↗</span>
+              <div className="p-6 flex justify-between items-end flex-1">
+                <h3 className="text-xl font-black tracking-tighter uppercase leading-none text-slate-800">ACCIDENT &<br />EMERGENCY</h3>
+                <span className="text-teal-600 font-bold bg-teal-50 w-8 h-8 flex items-center justify-center rounded-full group-hover:bg-teal-600 group-hover:text-white transition-colors">↗</span>
               </div>
             </Link>
 
-            <Link href="/services" className="flex flex-col group cursor-pointer">
-              <div className="h-64 bg-gray-200 w-full relative overflow-hidden">
+            <Link href="/services" className="flex flex-col group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:-translate-y-1">
+              <div className="h-56 w-full relative overflow-hidden">
                  <img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?q=80&w=800&auto=format&fit=crop" alt="Pediatrics & Wellness" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
-              <div className="bg-[#fcfcfc] p-8 flex justify-between items-end flex-1">
-                <h3 className="text-2xl font-black tracking-tighter uppercase leading-none group-hover:underline">PEDIATRICS &<br />WELLNESS</h3>
-                <span className="text-xl font-bold">↗</span>
+              <div className="p-6 flex justify-between items-end flex-1">
+                <h3 className="text-xl font-black tracking-tighter uppercase leading-none text-slate-800">PEDIATRICS &<br />WELLNESS</h3>
+                <span className="text-teal-600 font-bold bg-teal-50 w-8 h-8 flex items-center justify-center rounded-full group-hover:bg-teal-600 group-hover:text-white transition-colors">↗</span>
               </div>
             </Link>
 
@@ -62,23 +62,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats Row */}
-      <section className="border-b border-gray-300 grid grid-cols-2 md:grid-cols-4 bg-[#fcfcfc]">
-        <div className="p-8 text-center border-r border-b md:border-b-0 border-gray-300 flex flex-col items-center justify-center">
-          <span className="text-4xl font-black tracking-tighter mb-2">+150</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-gray-500">SPECIALIST DOCTORS</span>
-        </div>
-        <div className="p-8 text-center border-r border-b md:border-b-0 border-gray-300 flex flex-col items-center justify-center">
-          <span className="text-4xl font-black tracking-tighter mb-2">99.4%</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-gray-500">LAPAROSCOPY PRECISION</span>
-        </div>
-        <div className="p-8 text-center border-r border-gray-300 flex flex-col items-center justify-center">
-          <span className="text-4xl font-black tracking-tighter mb-2">24/7</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-gray-500">TRAUMA RESPONSE</span>
-        </div>
-        <div className="p-8 text-center bg-[#eadd7b] border-gray-300 flex flex-col items-center justify-center">
-          <span className="text-2xl font-black tracking-tighter mb-2">SHA/NHIF</span>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-gray-700">ACCREDITED FACILITY</span>
+      {/* Advanced Medical Excellence Section */}
+      <section className="bg-slate-900 text-white py-24 border-t border-slate-800">
+        <div className="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-start justify-between">
+          <div className="max-w-2xl mb-12 md:mb-0">
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase mb-6 text-white">Advanced Medical Excellence</h2>
+            <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-8">
+              We combine state-of-the-art medical technology with compassionate care to deliver unparalleled outcomes for our patients across all major specialties.
+            </p>
+            <Link href="/about" className="inline-block bg-teal-600 text-white px-8 py-4 text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-teal-500 transition-colors shadow-lg shadow-teal-600/20">
+              Discover Our Facility
+            </Link>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-8 w-full md:w-auto">
+            <div>
+              <span className="block text-5xl font-black tracking-tighter text-teal-400 mb-2">24/7</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Emergency Care</span>
+            </div>
+            <div>
+              <span className="block text-5xl font-black tracking-tighter text-teal-400 mb-2">150+</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Specialists</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -151,53 +157,56 @@ export default function HomePage() {
       </section>
 
       {/* Meet Our Specialists (Carousel) */}
-      <section className="py-24 px-4 md:px-8 container mx-auto bg-[#fcfcfc]">
-        <div className="flex justify-between items-end mb-12">
-          <h2 className="text-4xl font-black tracking-tighter uppercase">MEET OUR SPECIALISTS</h2>
-          <div className="flex gap-2">
-             <Link href="/find-a-doctor" className="w-10 h-10 border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors text-black">←</Link>
-             <Link href="/find-a-doctor" className="w-10 h-10 border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors text-black">→</Link>
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="py-24 bg-slate-50">
+        <div className="container mx-auto px-4 md:px-8">
           
-          <div className="border border-gray-300 bg-white cursor-pointer group flex flex-col">
-            <div className="h-72 bg-gray-200 relative overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=600&auto=format&fit=crop" alt="Dr. Madaraka Ogoye" className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
-            </div>
-            <div className="p-6 flex-1 flex flex-col">
-              <h3 className="text-xl font-black tracking-tighter leading-tight mb-1 group-hover:underline">DR. MADARAKA OGOYE</h3>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4">GENERAL SURGEON (MBCHB, MMED)</p>
-              <p className="text-[11px] text-gray-600 leading-relaxed mb-6">Renowned for pioneering minimally invasive laparoscopic surgery, reducing recovery times and improving patient outcomes in Kenya.</p>
-              <Link href="/book" className="mt-auto block w-full bg-black text-white text-[10px] font-bold uppercase tracking-widest text-center py-3 hover:bg-gray-800 transition-colors">Book Appointment</Link>
+          <div className="flex justify-between items-end mb-12">
+            <h2 className="text-4xl font-black tracking-tighter uppercase text-slate-800">MEET OUR SPECIALISTS</h2>
+            <div className="flex gap-2">
+               <Link href="/find-a-doctor" className="w-12 h-12 rounded-full border border-slate-300 flex items-center justify-center hover:bg-white hover:shadow-md transition-all text-slate-600 bg-transparent">←</Link>
+               <Link href="/find-a-doctor" className="w-12 h-12 rounded-full border border-slate-300 flex items-center justify-center hover:bg-white hover:shadow-md transition-all text-slate-600 bg-transparent">→</Link>
             </div>
           </div>
           
-          <div className="border border-gray-300 bg-white cursor-pointer group flex flex-col">
-            <div className="h-72 bg-gray-200 relative overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=600&auto=format&fit=crop" alt="Dr. Misheck Wanjiku" className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div className="group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200">
+              <div className="h-80 w-full relative overflow-hidden bg-slate-100">
+                 <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=800&auto=format&fit=crop" alt="Dr. Madaraka Ogoye" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-8">
+                <h3 className="text-2xl font-black tracking-tighter uppercase mb-1 text-slate-800">DR. MADARAKA OGOYE</h3>
+                <p className="text-xs text-teal-600 font-bold uppercase tracking-widest mb-4">Chief Surgeon</p>
+                <div className="w-full h-px bg-slate-200 mb-4"></div>
+                <Link href="/find-a-doctor" className="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-teal-600 transition-colors">View Profile →</Link>
+              </div>
             </div>
-            <div className="p-6 flex-1 flex flex-col">
-              <h3 className="text-xl font-black tracking-tighter leading-tight mb-1 group-hover:underline">DR. MISHECK WANJIKU</h3>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4">PEDIATRICIAN (MBCHB, MMED)</p>
-              <p className="text-[11px] text-gray-600 leading-relaxed mb-6">Dedicated specialist in early childhood development and pediatric critical care, providing compassionate care to families.</p>
-              <Link href="/book" className="mt-auto block w-full bg-black text-white text-[10px] font-bold uppercase tracking-widest text-center py-3 hover:bg-gray-800 transition-colors">Book Appointment</Link>
-            </div>
-          </div>
 
-          <div className="border border-gray-300 bg-white cursor-pointer group flex flex-col">
-            <div className="h-72 bg-gray-200 relative overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=600&auto=format&fit=crop" alt="Dr. David Miller" className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+            <div className="group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200">
+              <div className="h-80 w-full relative overflow-hidden bg-slate-100">
+                 <img src="https://images.unsplash.com/photo-1594824436951-7f12bc4175de?q=80&w=800&auto=format&fit=crop" alt="Dr. Misheck Wanjiku" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-8">
+                <h3 className="text-2xl font-black tracking-tighter uppercase mb-1 text-slate-800">DR. MISHECK WANJIKU</h3>
+                <p className="text-xs text-teal-600 font-bold uppercase tracking-widest mb-4">Head of Cardiology</p>
+                <div className="w-full h-px bg-slate-200 mb-4"></div>
+                <Link href="/find-a-doctor" className="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-teal-600 transition-colors">View Profile →</Link>
+              </div>
             </div>
-            <div className="p-6 flex-1 flex flex-col">
-              <h3 className="text-xl font-black tracking-tighter leading-tight mb-1 group-hover:underline">DR. DAVID MILLER</h3>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4">NEUROLOGIST (MD, PHD)</p>
-              <p className="text-[11px] text-gray-600 leading-relaxed mb-6">Renowned researcher and clinician focusing on degenerative neurological conditions and stroke recovery.</p>
-              <Link href="/book" className="mt-auto block w-full bg-black text-white text-[10px] font-bold uppercase tracking-widest text-center py-3 hover:bg-gray-800 transition-colors">Book Appointment</Link>
-            </div>
-          </div>
 
+            <div className="group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200">
+              <div className="h-80 w-full relative overflow-hidden bg-slate-100">
+                 <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=800&auto=format&fit=crop" alt="Dr. Sarah Jenkins" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-8">
+                <h3 className="text-2xl font-black tracking-tighter uppercase mb-1 text-slate-800">DR. SARAH JENKINS</h3>
+                <p className="text-xs text-teal-600 font-bold uppercase tracking-widest mb-4">Pediatric Specialist</p>
+                <div className="w-full h-px bg-slate-200 mb-4"></div>
+                <Link href="/find-a-doctor" className="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-teal-600 transition-colors">View Profile →</Link>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 

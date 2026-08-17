@@ -13,22 +13,20 @@
 }
 
 @theme {
-  --color-background: #fcfcfc;
-  --color-foreground: #000000;
-  --color-brand-yellow: #eadd7b;
-  --color-brand-red: #eaedeb; /* Light red/pinkish background for top bar? Actually the image top bar is very light pink: #ffebeb */
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
 }
 
 @layer base {
   body {
-    background-color: #f7f7f7;
+    background-color: #f8fafc; /* slate-50 */
     color: var(--color-foreground);
     font-family: var(--font-inter);
   }
   
   h1, h2, h3, h4, h5, h6 {
-    color: #000000;
-    letter-spacing: -0.04em; /* Tighter tracking for headers */
+    color: #1e293b; /* slate-800 */
+    letter-spacing: -0.02em; /* Softer tracking */
   }
 }
 
