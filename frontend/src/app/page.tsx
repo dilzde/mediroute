@@ -14,16 +14,7 @@ export default function HomePage() {
       <section className="border-t border-slate-200">
         <div className="container mx-auto flex flex-col md:flex-row bg-white rounded-t-3xl overflow-hidden shadow-xl -mt-8 relative z-10">
           
-          {/* Sidebar */}
-          <aside className="w-full md:w-72 flex-shrink-0 bg-slate-50 border-r border-slate-200 p-8">
-            <h3 className="text-[10px] font-bold uppercase tracking-widest mb-6 text-slate-500">SELECT LOCATION</h3>
-            <ul className="space-y-3">
-              <Link href="/find-a-doctor" className="block bg-teal-50 p-4 text-xs font-bold border border-teal-200 text-teal-900 rounded-xl flex justify-between items-center cursor-pointer shadow-sm">
-                <span>Kenya Central Clinic, Main Branch</span>
-                <span className="text-teal-600">✓</span>
-              </Link>
-            </ul>
-          </aside>
+          {/* Sidebar removed to admin */}
 
           {/* Image Grid */}
           <div className="flex-1 grid grid-cols-1 md:grid-cols-3 p-6 gap-6 bg-slate-100">
@@ -40,20 +31,20 @@ export default function HomePage() {
             
             <Link href="/services" className="flex flex-col group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:-translate-y-1">
               <div className="h-56 w-full relative overflow-hidden">
-                 <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop" alt="Accident & Emergency" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                 <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop" alt="Endoscopy & Colonoscopy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-6 flex justify-between items-end flex-1">
-                <h3 className="text-xl font-black tracking-tighter uppercase leading-none text-slate-800">ACCIDENT &<br />EMERGENCY</h3>
+                <h3 className="text-xl font-black tracking-tighter uppercase leading-none text-slate-800">ENDOSCOPY &<br />COLONOSCOPY</h3>
                 <span className="text-teal-600 font-bold bg-teal-50 w-8 h-8 flex items-center justify-center rounded-full group-hover:bg-teal-600 group-hover:text-white transition-colors">↗</span>
               </div>
             </Link>
 
             <Link href="/services" className="flex flex-col group cursor-pointer bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 hover:-translate-y-1">
               <div className="h-56 w-full relative overflow-hidden">
-                 <img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?q=80&w=800&auto=format&fit=crop" alt="Pediatrics & Wellness" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                 <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop" alt="Minor Theatre" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-6 flex justify-between items-end flex-1">
-                <h3 className="text-xl font-black tracking-tighter uppercase leading-none text-slate-800">PEDIATRICS &<br />WELLNESS</h3>
+                <h3 className="text-xl font-black tracking-tighter uppercase leading-none text-slate-800">MINOR<br />THEATRE</h3>
                 <span className="text-teal-600 font-bold bg-teal-50 w-8 h-8 flex items-center justify-center rounded-full group-hover:bg-teal-600 group-hover:text-white transition-colors">↗</span>
               </div>
             </Link>

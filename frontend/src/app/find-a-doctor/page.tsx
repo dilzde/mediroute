@@ -120,14 +120,10 @@ export default function FindADoctorPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-6 pt-4 border-t border-slate-100">
+                <div className="mb-6 pt-4 border-t border-slate-100">
                   <div>
                     <p className="text-[8px] font-bold uppercase tracking-widest text-slate-400 mb-1">SPECIALTY</p>
                     <p className="text-xs font-bold text-slate-700">{doc.specialty}</p>
-                  </div>
-                  <div>
-                    <p className="text-[8px] font-bold uppercase tracking-widest text-slate-400 mb-1">BRANCH</p>
-                    <p className="text-xs font-bold text-slate-700">{doc.location}</p>
                   </div>
                 </div>
 
